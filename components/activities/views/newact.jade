@@ -1,0 +1,32 @@
+extends ../../../views/layout
+
+block content
+  div.container
+    div.row
+      div.col-md-12.col-md-offset-.5
+        h1!= title
+        div.well
+          hr
+          - if (messages.error)
+            div.alert.alert-danger.alert-dismissable
+              button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+              span= messages.error
+          form(method="post" action="/newactivity")
+            div.form-group
+              label(for="name") Nombre de la actividad:
+              input(type="text", name="name", id="name").form-control
+            div.form-group
+              label(for="materia") Materia:
+              input(type="text", name="materia", id="materia").form-control
+            div.form-group
+              label(for="explicacion") Explicaion de la actividad:
+              textarea(type="text", name="explicacion", id="explicacion").form-control
+            div.form-group
+              label(for="deadline") Fecha limite de la entrega:
+              input(type="text", name="deadline", id="deadline").form-control
+            div.form-group
+              button(type="submit").pull-rigth.btn.btn-success Enviar
+
+block scripts
+  script(type="text/javascript").
+    CKEDITOR.replace('explicacion');

@@ -1,0 +1,55 @@
+extends ../../../views/layout
+
+block content
+  div.container 
+    div.row
+      div.col-md-12
+        h1.text-center Administracion de Usuarios
+        div.form-group
+          - if (messages.error)
+            div.alert.alert-danger.alert-dismissable
+              button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+              span= messages.error 
+          - if (messages.envio)
+            div.alert.alert-danger.alert-dismissable
+              button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+              span= messages.envio 
+          div.col-md-6.col-md-offset-3
+            table.table.table-striped 
+              h4.text-center Filtrar por materia
+              tr
+                td Materia 
+                td Accion
+              each course in courses
+                form(method="get" action="/sendmail/"+course.name)
+                  tr
+                    td=course.name
+                    td
+                      button(type="submit").btn.btn-default.btn-xs Buscar
+          br
+          div.col-xs-12.col-sm-6.col-md-8
+            form(method="post" action="/sendmail/"+ materia)
+              div.table-responsive
+                table.table.table-striped 
+                  h4.text-center Alumnos
+                  tr 
+                    td Nombre 
+                    td Matricula
+                    td Materia
+                  each result in results
+                    tr 
+                      td= result.fullName 
+                      td= result.matricula
+                      td= result.materia 
+              br
+              div.form-group
+                h4.text-center Titulo del correo 
+                input(type="text" name="titulo" id="titulo").form-control
+              div.form-group
+                h4.text-center Contenido de correo
+                textarea(name="mail", id="mail").form-control
+                button(type="submit").btn.btn-primary Enviar
+
+block scripts
+  script(type="text/javascript").
+    CKEDITOR.replace('mail');

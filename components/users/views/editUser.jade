@@ -1,0 +1,30 @@
+extends ../../../views/layout
+
+block content
+  div.container 
+    div.row
+      div.col-md-6.col-md-offset-3
+        h1= title
+        hr
+        - if (messages.error)
+          div.alert.alert-danger.alert-dismissable
+            button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+            span= messages.error
+        form(method="post").well
+          div.form-group
+            label(for="fullName") Nombre completo :
+            input(name="fullName", id="fullName", value=result.fullName).form-control
+          div.form-group
+            label(for="matricula") Matricula
+            input(type="text", name="matricula", id="matricula", maxlength="7",value=result.matricula).form-control
+          div.form-group
+            label(for="email") Email
+            input(type="text", name="email", id="email", value=result.email).form-control
+          div.form-group
+            label(for="password") Password:
+            input(type="password", name="password", id="password").form-control
+          div.form-group
+            label(for="passwordconfi") Confirmar password
+            input(type="password", name="passwordconfi", id="passwordconfi").form-control
+          div.form-group
+            button(type="submit").btn.btn-success Enviar

@@ -1,0 +1,40 @@
+extends ../../../views/layout
+
+block content
+  div.container 
+    div.row
+      div.col-md-12
+        h1.text-center Administracion de Cursos
+        div.form-group
+          div.table-responsive
+            table.table.table-striped
+              tr 
+                td Nombre 
+                td Frecuencia
+                td Horario
+                td Acciones
+              each result in results 
+                tr 
+                  td= result.name 
+                  td= result.frecuency
+                  td= result.schedule 
+                  td 
+                    a(href="/editcourse/" + result._id).btn.btn-primary Editar
+                    br
+                    br
+                    a(data-toggle="modal" data-target="#myModal1").btn.btn-danger Eliminar
+                    form(method="post", action="/deletecourse/" + result._id)
+                      div(class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+                        div(class="modal-dialog")
+                          div(class="modal-content")
+                            div(class="modal-header")
+                              button(class="close" data-dismiss="modal")
+                                span(aria-hidden="true") &times;
+                                  span(class="sr-only") Close
+                              h4(class="modal-title" id="myModalLabel") Desea eliminar el curso?
+                            div(class="modal-body")
+                              p Esta seguro que desea eliminar el curso?
+                              p= result.name
+                            div(class="modal-footer")
+                              button(data-dismiss="modal").btn.btn-default Cancelar
+                                button(type="submit").btn.btn-danger Eliminar

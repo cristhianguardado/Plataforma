@@ -1,0 +1,28 @@
+extends ../../../views/layout
+
+block content
+  div.container 
+    div.row
+      div.col-md-12.col-md-offset-.5
+        h1= title
+        - if (messages.error)
+          div.alert.alert-danger.alert-dismissable
+            button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+            span= messages.error
+        div.well
+          div.form-group
+              label.text-center Nombre de la actividad:
+              div=result.name
+            div.form-group
+              label.text-center Materia:
+              div=result.materia
+            div.form-group
+              label Explicaion de la actividad:
+              div!=result.explicacion
+            div.form-group
+              label Fecha limite de la entrega:
+              div=result.deadline
+
+block scripts
+  script(type="text/javascript").
+    CKEDITOR.replace('explicacion');

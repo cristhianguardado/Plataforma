@@ -1,0 +1,24 @@
+extends ../../../views/layout
+
+block content
+  div.container 
+    div.row
+      div.col-md-6.col-md-offset-3
+        h1.text-center Mi informacion 
+        div.well
+          h3.text-center= result.fullName
+          hr
+          label Email
+          div= result.email
+          label Matricula
+          div= result.matricula
+          label Materia
+          div= result.materia
+          label Equipo 
+          div= result.equipo
+          label Creado
+          div= result.created
+          hr
+          if (session == result._id || admin)
+            div.well
+              a(href='/editUser/'+ result._id).btn.btn-warning Editar

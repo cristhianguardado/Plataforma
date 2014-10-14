@@ -1,0 +1,22 @@
+extends ../../../views/layout
+
+block content
+  div.container
+    div.row
+      div.col-md-6.col-md-offset-3
+        h1!= title
+        div.well
+          hr
+          - if (messages.error)
+            div.alert.alert-danger.alert-dismissable
+              button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+              span= messages.error
+          form(method="post" action="/changepassword/" + result._id)
+            div.form-group
+              label(for="password") Nuevo password:
+              input(type="password", name="password", id="password").form-control
+            div.form-group
+              label(for="passwordconfi") Confirmar nuevo password
+              input(type="password", name="passwordconfi", id="passwordconfi").form-control
+            div.form-group
+              button(type="submit").btn.btn-success Enviar

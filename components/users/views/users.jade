@@ -1,0 +1,64 @@
+extends ../../../views/layout
+
+block content
+  div.container 
+    div.row
+      div.col-md-12
+        h1.text-center Administracion de Usuarios
+        div.form-group
+          - if (messages.error)
+            div.alert.alert-danger.alert-dismissable
+              button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+              span= messages.error 
+          div.col-xs-9.col-md-12
+            table.table.table-striped 
+              h3.text-center Filtrar por materia
+              tr
+                td Materia 
+                td Accion
+              each course in courses
+                form(method="get" action="/users/"+course.name)
+                  tr
+                    td=course.name
+                    td
+                      button(type="submit").btn.btn-default.btn-xs Buscar
+          hr
+          div.col-xs-12.col-md-12
+            div.table-responsive
+              table.table.table-striped 
+                h3.text-center Alumnos
+                tr 
+                  td Nombre 
+                  td Email
+                  td Matricula
+                  td Materia
+                  td Permisos
+                  td Acciones
+                each result in results
+                  if (result.isUser == true)
+                    tr 
+                      td= result.fullName 
+                      td= result.email
+                      td= result.matricula
+                      td= result.materia 
+                      td usuario
+                      td 
+                        a(href="/editUserAdmin/" + result._id).btn.btn-primary.pull-rigth Editar
+                        br
+                        br
+                        a(data-toggle="modal" data-target="#myModal"+ result._id).btn.btn-danger.pull-left Eliminar
+                        form(method="post", action="/deleteUser/" + result._id)
+                          div(class="modal fade" id="myModal"+result._id tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+                            div(class="modal-dialog")
+                              div(class="modal-content")
+                                div(class="modal-header")
+                                  button(class="close" data-dismiss="modal")
+                                    span(aria-hidden="true") &times;
+                                      span(class="sr-only") Close
+                                  h4(class="modal-title" id="myModalLabel") Desea eliminar usuario?
+                                div(class="modal-body")
+                                  p Esta seguro que desea eliminar al usuario:
+                                  p= result.fullName
+                                div(class="modal-footer")
+                                  button(data-dismiss="modal").btn.btn-default Cancelar
+                                    button(type="submit").btn.btn-danger Eliminar

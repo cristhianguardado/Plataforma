@@ -1,0 +1,21 @@
+extends ../../../views/layout
+
+block content
+  div.container-fluid
+    div.row
+      div.col-lg-4.col-lg-offset-4
+        h1= title
+        h4.text-center Introduce tu correo electronico para recivir un correo de recuperacon.
+        - if (messages.error)
+          div.alert.alert-danger.alert-dismissable
+            button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+            span= messages.error
+        - if (messages.envio)
+          div.alert.alert-success.alert-dismissable
+            button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+            span= messages.envio    
+        form(action="/recoverpassword", method="post", role="form").form-group.well
+          div.form-group
+            label(for="email") Email:
+            input(type="text", name="email", id="email").form-control
+          button(type="submit").btn.btn-success Enviar

@@ -1,0 +1,35 @@
+div#wrapper
+  nav(role="navigation", style="margin-bottom: 0").navbar.navbar-inverse
+    div.container-fluid
+      <!-- Brand and toggle get grouped for better mobile display -->
+      div.navbar-header    
+        button(type="button", data-toggle="collapse", data-target="#navbar").navbar-toggle
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a(href="#").navbar-brand 
+      
+      div.collapse.navbar-collapse#navbar
+        ul.nav.navbar-nav
+          li.active
+            a(href="/") Home
+        if (locals.isAdmin)
+          ul.nav.navbar-nav
+            li.active
+              a(href="/preusers") Pre-usuarios
+            ul.nav.navbar-nav
+              li.active
+                a(href="/users") Users
+        ul.nav.navbar-nav
+          li.active
+              a(href="/preregister") Pre registro
+
+        
+        if (locals.isLogged) 
+          ul.nav.navbar-nav.pull-right
+            li.active
+            a(href="/logout").btn.btn-default Cerrar session
+
+    

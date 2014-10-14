@@ -1,0 +1,16 @@
+{
+  "mongodburi": "mongodb://localhost/expressjsmvc",
+  "secretKey": "your-secret-key-goes-here",
+  "enableIO": true,
+  "components": [
+    "frontpage", 
+    "users",
+    "preregister",
+    "installer",
+    "staticpages",
+    "recovery",
+    "activities",
+    "courses",
+    "sendmail"
+  ]
+}

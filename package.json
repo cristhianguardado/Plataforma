@@ -1,0 +1,24 @@
+{
+  "name": "plataforma",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node start.js"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "expressjsmvc": "*",
+    "mongoose": "*",
+    "socket.io": "*",
+    "moment": "*",
+    "express-flash": "0.0.2",
+    "includemvc": "*",
+    "jade": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "nodemailer": "0.7.1",
+    "connect-caminte": "*",
+    "stylus": "*",
+    "nib": "*"
+  }
+}
