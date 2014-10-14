@@ -1,3 +1,7 @@
+#header {
+  background-image: url('../public/images/images.jpg');
+}
+
 body {
   padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -6,52 +10,4 @@ body {
 
 a {
   color: #00B7FF;
-}
-
-#preline p {
-	white-space: pre-line;
-}
-
-
-#disconected p {
-  color: red;
-  background-color: rgba(200, 0, 0, 0.4);
- 
-}
- 
-#connected p {
-  color: green;
-  background-color: rgba(0,200,0,0.4);
-}
- 
-#comment p {
-  color: green;
-  background-color: rgba(0,200,0,0.4);
-}
-
-.hide {
-  display: none;
-}
-
-#containers {
-  margin: 10px 0px 0px 10px;
-  padding: 10px;
-}
-
-#messages-container {
-  float: left;
-  border: 1px solid #CCCCCC;
-  width: 800px;
-  height: 300px;
-  overflow: auto;
-}
-
-.clear {
-  clear: both;
-}
-
-#msg-input  {
-  margin-top: 20px;
-  width: 800px;
-  height: 30px;
 }

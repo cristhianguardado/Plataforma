@@ -29,7 +29,7 @@ exports.getsendmail = function(req, res){
 				}
 				if(courses){
 					console.log(courses)
-					res.render('sendmail', {results: results, courses: courses});	
+					res.render('sendmail', {results: results, courses: courses, title: "Envio de correos"});	
 				}
 			})
 

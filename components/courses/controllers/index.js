@@ -33,7 +33,7 @@ exports.getcourses = function(req, res) {
 		}
 		if(results) {
 			console.log(results);
-			res.render('cursos', {results: results});
+			res.render('cursos', {results: results, title:"Cursos"});
 		}
 	});
 }

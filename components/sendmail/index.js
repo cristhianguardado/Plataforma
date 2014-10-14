@@ -15,6 +15,7 @@ function isAdmin(req, res, next) {
           app.locals.isAdmin = true;
           app.locals.isUser = false;
           app.locals.isLogged = true;
+          app.locals.session = req.session.passport.user;
           next(); 
         }
         else{
@@ -30,6 +31,6 @@ function isAdmin(req, res, next) {
 }
 
 //rutas solo para admin
-app.get("/sendmail", controller.getsendmail);
-app.get("/sendmail/:materia", controller.getsendmailmateria);
-app.post("/sendmail/:materia", controller.postenviocorreos);
+app.get("/sendmail", isAdmin, controller.getsendmail);
+app.get("/sendmail/:materia", isAdmin, controller.getsendmailmateria);
+app.post("/sendmail/:materia", isAdmin, controller.postenviocorreos);

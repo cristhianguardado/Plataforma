@@ -6,20 +6,6 @@ var Courses = require("../../courses/models");
 
 exports = module.exports;
 
-
-//Obtener usuario
-exports.getCoursesUser = function(req, res) {  
-  var id = req.params.id;
-	Model.findOne({_id: id}, function(err, result) {
-		if(err) {
-			res.send(406, err);
-		}
-		if(result){
-			res.render('menu',{result: result});
-		}
-	});
-};
-
 //Obtener usuario
 exports.getUser = function(req, res) {  
   var id = req.params.id;
@@ -28,7 +14,7 @@ exports.getUser = function(req, res) {
 			res.send(406, err);
 		}
 		if(result){
-			res.render('user',{result: result});
+			res.render('user',{result: result, title: result.fullName});
 		}
 	});
 };
@@ -57,7 +43,8 @@ exports.getUsers = function(req, res) {
 				if(courses){
 					var render = {
 						results: results, 
-						courses: courses
+						courses: courses,
+						title: "Usuarios"
 					}
 					res.render('users', render);	
 				}
@@ -90,7 +77,12 @@ exports.getUsersformateria = function(req, res) {
 					console.log(err);
 				}
 				if(courses){
-					res.render('users', {results: results, courses: courses});	
+					var render = {
+						results: results, 
+						courses: courses, 
+						title: "Usuarios de la materia" + materia
+					}
+					res.render('users', render);	
 				}
 			})
 
@@ -136,7 +128,7 @@ exports.postEditUser = function(req, res) {
 	if( /(.+)@(.+){2,}\.(.+){2,}/.test(email) ){
 		if(password == passwordconfi){
 			var user = { 
-				email: email,
+				email: body.email,
 				fullName: body.fullName,
 				matricula: body.matricula,
 				password: secure.encrypt(body.password),
@@ -187,7 +179,7 @@ exports.postEditUserAdmin = function(req, res) {
 	if( /(.+)@(.+){2,}\.(.+){2,}/.test(email) ){
 		if(password == passwordconfi){
 			var user = { 
-				email: email,
+				email: body.email,
 				fullName: body.fullName,
 				matricula: body.matricula,
 				materia: body.materia,
@@ -223,10 +215,12 @@ exports.getLogin = function(req, res) {
 exports.postLogin = function(req, res) {
   Model.findOne({_id: id}, function(err, result) {
   	if (err){
+  		console.log(err)
   	}
   	if(result){
+  		console.log("que pedo")
   		passport.authenticate("local", {
-    		successRedirect: "/menu/" + result._id,
+    		successRedirect: "/user/" + result._id,
     		failureRedirect: "/login",
     		failureFlash: true
   		});
@@ -241,4 +235,3 @@ exports.getLogout = function(req, res) {
   app.locals.isLogged = false;
   res.redirect("/login");
 }
-

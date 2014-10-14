@@ -77,7 +77,7 @@ exports.getUsers = function(req, res) {
 		}
 		if(results) {
 			console.log(results);
-			res.render('preusers', {results: results});
+			res.render('preusers', {results: results, title: "Usuarios en Pre-Registro"});
 		}
 	});
 }

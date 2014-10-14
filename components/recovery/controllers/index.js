@@ -96,7 +96,7 @@ exports.getChangePassForm = function(req, res){
 					var deadline = result.created
 					deadline.setHours(deadline.getHours()+24);
 					if(today < deadline && status == false){
-						res.render('chagepass', {result: result})
+						res.render('chagepass', {result: result, title: "Cambia la contraseña"})
 					}else{
 						req.flash('error', 'El link de recuperacion ha expirado');
 						res.redirect('/recoverpassword');

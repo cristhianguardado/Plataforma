@@ -3,7 +3,6 @@
   "secretKey": "your-secret-key-goes-here",
   "enableIO": true,
   "components": [
-    "frontpage", 
     "users",
     "preregister",
     "installer",

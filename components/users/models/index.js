@@ -1,16 +1,10 @@
 var mongoose = require('mongoose');
 
 var User = mongoose.model('User',{
-	email: {
-		type: String, 
-		unique: true
-	},
+	email: { type: String, index:{unique: true}},
 	password: String,
 	fullName: String,
-	matricula: {
-		type: String, 
-		unique: true
-	},
+	matricula: { type: String, index:{unique: true}},
 	materia: String,
 	equipo: Number,
 	isAdmin: Boolean, 

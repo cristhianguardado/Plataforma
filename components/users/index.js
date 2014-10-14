@@ -20,6 +20,7 @@ function isUser(req, res, next) {
           app.locals.isAdmin = false;
           app.locals.isUser = true;
           app.locals.isLogged = true;
+          app.locals.session = req.session.passport.user;
           next();
         }
         else{
@@ -47,6 +48,7 @@ function isAdmin(req, res, next) {
           app.locals.isAdmin = true;
           app.locals.isUser = false;
           app.locals.isLogged = true;
+          app.locals.session = req.session.passport.user;
           next(); 
         }
         else{
@@ -61,6 +63,16 @@ function isAdmin(req, res, next) {
   }
 }
 
+function isLogged(req, res, next){
+  if(!req.session.passport.user){
+    res.redirect("/login");
+    next();
+  }else{
+    next();
+  }
+};
+
+
 function validPassword(password, user){
   return secure.isEqual(password, user.password);
 };
@@ -70,10 +82,11 @@ passport.use(new LocalStrategy(
     console.log("Finding a user with email: " + email);
     Model.findOne({email: email}, function(err, user) {
       if (err) { 
+        console.log(err);
         return next(err); 
       }
       if (!user) {
-        return next(null, false, { 
+        return next(null, false, {
           message: 'Email incorrecto.' 
         });
       }
@@ -98,8 +111,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 //obtener usuarios
-app.get("/usermenu", controller.getCoursesUser);//user
-app.get("/user/:id",isUser, controller.getUser);//user
+app.get("/user/:id",isLogged, controller.getUser);//user and admin
 
 app.get("/users", isAdmin, controller.getUsers);//admin
 app.get("/users/:materia", isAdmin, controller.getUsersformateria);//admin
@@ -116,11 +128,12 @@ app.get("/editUserAdmin/:id", isAdmin, controller.getEditFormAdmin);
 app.post("/editUserAdmin/:id", isAdmin, controller.postEditUserAdmin);
 
 app.get("/login", controller.getLogin);
-app.post('/login',
+app.post("/login", controller.postLogin);
+/*
   passport.authenticate('local', { 
-    successRedirect: '/usermenu',
-    failureRedirect: '/',
+    successRedirect: '/users',
+    failureRedirect: '/login',
     failureFlash: true })
-);
+);*/
 
 app.get("/logout", controller.getLogout);

@@ -11,7 +11,7 @@ exports.getactivity = function(req, res) {
 			res.send(406, err);
 		}
 		if(result){
-			res.render('activity', {result: result});
+			res.render('activity', {result: result, title: result.name});
 		}
 	});
 };
@@ -33,7 +33,7 @@ exports.getactivities = function(req, res) {
 		}
 		if(results) {
 			console.log(results);
-			res.render('activities', {results: results});
+			res.render('activities', {results: results, title: "Actividades"});
 		}
 	});
 }

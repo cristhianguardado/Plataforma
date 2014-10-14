@@ -19,6 +19,9 @@ block content
           label Creado
           div= result.created
           hr
-          if (session == result._id || admin)
+          if (isAdmin)
+            div.well
+              a(href='/editUserAdmin/'+ result._id).btn.btn-warning Editar
+          if (isUser)
             div.well
               a(href='/editUser/'+ result._id).btn.btn-warning Editar

@@ -17,6 +17,7 @@ function isUser(req, res, next) {
           app.locals.isAdmin = false;
           app.locals.isUser = true;
           app.locals.isLogged = true;
+          app.locals.session = req.session.passport.user;
           next(); 
         }
         else{
@@ -44,6 +45,7 @@ function isAdmin(req, res, next) {
           app.locals.isAdmin = true;
           app.locals.isUser = false;
           app.locals.isLogged = true;
+          app.locals.session = req.session.passport.user;
           next(); 
         }
         else{
@@ -59,7 +61,8 @@ function isAdmin(req, res, next) {
 }
 
 //obtener actividad (user)
-app.get('/activity/:id', isUser, controller.getactivity);
+app.get('/activity/:id/:id', isUser, controller.getactivity);
+
 //obtener actividades (admin)
 app.get('/activities', isAdmin, controller.getactivities);
 //crear nueva actividad (admin)
