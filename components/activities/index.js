@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var User = require("../users/models");
 
 function isUser(req, res, next) {
-  if (req.isAuthenticated()){
+  if (req.session.passport.user){
     User.findOne({_id: req.session.passport.user}, function(err, result){
       if(err){
         console.log(err);
@@ -33,7 +33,7 @@ function isUser(req, res, next) {
 }
 
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated()){    
+  if (req.session.passport.user){    
     User.findOne({_id: req.session.passport.user}, function(err, result){
       if(err){
         console.log(err);

@@ -14,6 +14,7 @@ exports.getUser = function(req, res) {
 			res.send(406, err);
 		}
 		if(result){
+			console.log(result)
 			res.render('user',{result: result, title: result.fullName});
 		}
 	});

@@ -7,13 +7,23 @@ var mongoose = require('mongoose');
 var passport = require("passport")
   , LocalStrategy = require('passport-local').Strategy;
 
+/*function isUSer(req, res, next){
+  if(!req.session.passport.user){
+    res.redirect("/login");
+    next();
+  }else{
+    next();
+  }
+};*/
+
 function isUser(req, res, next) {
-  if (req.isAuthenticated()){
+  if (req.session.passport.user){
     Model.findOne({_id: req.session.passport.user}, function(err, result){
       if(err){
         console.log(err);
       }
       if(result){
+        console.log(req.isAuthenticated);
         var isAdmin = result.isAdmin;
         var isUser = result.isUse;
         if(isUser == true){
@@ -36,7 +46,7 @@ function isUser(req, res, next) {
 }
 
 function isAdmin(req, res, next) {
-  if (req.isAuthenticated()){    
+  if (req.session.passport.user){    
     Model.findOne({_id: req.session.passport.user}, function(err, result){
       if(err){
         console.log(err);
@@ -68,6 +78,8 @@ function isLogged(req, res, next){
     res.redirect("/login");
     next();
   }else{
+    app.locals.isLogged = true;
+    app.locals.session = req.session.passport.user;
     next();
   }
 };
@@ -110,7 +122,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-//obtener usuarios
+//obtener usuario
 app.get("/user/:id",isLogged, controller.getUser);//user and admin
 
 app.get("/users", isAdmin, controller.getUsers);//admin
@@ -128,12 +140,11 @@ app.get("/editUserAdmin/:id", isAdmin, controller.getEditFormAdmin);
 app.post("/editUserAdmin/:id", isAdmin, controller.postEditUserAdmin);
 
 app.get("/login", controller.getLogin);
-app.post("/login", controller.postLogin);
-/*
+app.post("/login", 
   passport.authenticate('local', { 
     successRedirect: '/users',
     failureRedirect: '/login',
     failureFlash: true })
-);*/
+);
 
 app.get("/logout", controller.getLogout);
