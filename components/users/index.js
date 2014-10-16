@@ -128,12 +128,11 @@ app.get("/editUserAdmin/:id", isAdmin, controller.getEditFormAdmin);
 app.post("/editUserAdmin/:id", isAdmin, controller.postEditUserAdmin);
 
 app.get("/login", controller.getLogin);
-app.post("/login", controller.postLogin);
-/*
+app.post("/login",
   passport.authenticate('local', { 
-    successRedirect: '/users',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true })
-);*/
+);
 
 app.get("/logout", controller.getLogout);
