@@ -7,6 +7,20 @@
     "bootstrap": "3.1.0",
     "backbone": "1.1.0",
     "underscore": "1.5.2",
-    "momentjs": "~2.5.1"
+    "momentjs": "~2.5.1",
+    "express": "3.4.8",
+    "expressjsmvc": "*",
+    "mongoose": "*",
+    "socket.io": "*",
+    "moment": "*",
+    "express-flash": "0.0.2",
+    "includemvc": "*",
+    "jade": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "nodemailer": "0.7.1",
+    "connect-caminte": "*",
+    "stylus": "*",
+    "nib": "*"
   }
 }
