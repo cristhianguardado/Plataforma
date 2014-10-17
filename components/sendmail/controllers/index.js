@@ -28,7 +28,6 @@ exports.getsendmail = function(req, res){
 					console.log(err);
 				}
 				if(courses){
-					console.log(courses)
 					res.render('sendmail', {results: results, courses: courses, title: "Envio de correos"});	
 				}
 			})
@@ -39,7 +38,6 @@ exports.getsendmail = function(req, res){
 
 exports.getsendmailmateria = function(req, res) {
   var materia = req.params.materia;
-  console.log(materia);
   
 	User.find({materia: materia}, function(err, results) {
 		if(err) {
@@ -56,7 +54,6 @@ exports.getsendmailmateria = function(req, res) {
 						results: results, 
 						courses: courses, 
 						title: "Envio de correos",
-						materia: materia
 					}
 					res.render('sendmail', render);	
 				}

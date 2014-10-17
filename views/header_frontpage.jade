@@ -15,6 +15,10 @@ div#wrapper
         ul.nav.navbar-nav
           li.active
             a(href="/") Home
+        if (!locals.isLogged) 
+          ul.nav.navbar-nav.pull-right
+            li.active
+              a(href="/login") Login
         if (locals.isLogged) 
           ul.nav.navbar-nav.pull-right
             li.active
@@ -40,6 +44,9 @@ div#wrapper
               a(href="/user/" + session) Mi Perfil
         
         if (locals.isUser)
+          ul.nav.navbar-nav.pull-right
+              li.active
+                a(href="/courses") Admón de Cursos
           ul.nav.navbar-nav.pull-right
             li.active
               a(href="/user/" + session) Mi Perfil
