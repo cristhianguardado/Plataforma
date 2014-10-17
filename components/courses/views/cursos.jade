@@ -1,23 +1,23 @@
 extends ../../../views/layout
 
 block content
+  header 
+    div.col-md-12.col-md-offset-.5
+      a(href="/newcourse").btn.btn-primary.pull-right Agregar Curso
+  br
   div.container 
     div.row
-      div.col-md-12
+      div.col-md-12.col-md-offset-.5
         h1.text-center Administracion de Cursos
         div.form-group
-          div.table-responsive
+          div.table
             table.table.table-striped
               tr 
                 td Nombre 
-                td Frecuencia
-                td Horario
                 td Acciones
               each result in results 
                 tr 
                   td= result.name 
-                  td= result.frecuency
-                  td= result.schedule 
                   td 
                     a(href="/editcourse/" + result._id).btn.btn-primary Editar
                     br

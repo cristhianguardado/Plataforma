@@ -92,7 +92,7 @@ exports.posteditactivity = function(req, res) {
 			console.log(err)
 		}
 		if(result) {
-			res.redirect('/activity/' + result._id);			
+			res.redirect('/activities');			
 		}
 	});
 };

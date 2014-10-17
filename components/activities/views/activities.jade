@@ -1,24 +1,28 @@
 extends ../../../views/layout
 
 block content
+  header 
+    div.col-md-12.col-md-offset-.5
+      a(href="/newactivity").btn.btn-primary.pull-right Agregar actividad
   div.container 
     div.row
       div.col-md-12
         h1.text-center Administracion de Actividades
         div.form-group
-          - if (messages.error)
-            div.alert.alert-danger.alert-dismissable
-              button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
-              span= messages.error 
-          div.table-responsive
+          br
+          div.table
             table.table.table-striped
               tr 
                 td Nombre 
+                td Explicacion
+                td Materia
                 td Fecha de expiracion
                 td Acciones
               each result in results 
                 tr 
                   td= result.name 
+                  td!= result.explicacion
+                  td= result.materia
                   td= result.deadline 
                   td 
                     a(href="/editactivity/" + result._id).btn.btn-primary Editar
