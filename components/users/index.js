@@ -7,33 +7,16 @@ var mongoose = require('mongoose');
 var passport = require("passport")
   , LocalStrategy = require('passport-local').Strategy;
 
-function isUser(req, res, next) {
-  if (req.isAuthenticated()){
-    Model.findOne({_id: req.session.passport.user}, function(err, result){
-      if(err){
-        console.log(err);
-      }
-      if(result){
-        var isAdmin = result.isAdmin;
-        var isUser = result.isUse;
-        if(isUser == true){
-          app.locals.isAdmin = false;
-          app.locals.isUser = true;
-          app.locals.isLogged = true;
-          app.locals.session = req.session.passport.user;
-          next();
-        }
-        else{
-          res.redirect("/403");
-          next();
-        }
-      }
-    })
+function isLogged(req, res, next){
+  if(!req.session.passport.user){
+    res.redirect("/login");
+    next();
+  }else{
+    app.locals.isLogged = true;
+    app.locals.session = req.session.passport.user;
+    next();
   }
-  else{
-    res.redirect('/login');
-  }
-}
+};
 
 function isAdmin(req, res, next) {
   if (req.isAuthenticated()){    
@@ -63,14 +46,6 @@ function isAdmin(req, res, next) {
   }
 }
 
-function isLogged(req, res, next){
-  if(!req.session.passport.user){
-    res.redirect("/login");
-    next();
-  }else{
-    next();
-  }
-};
 
 
 function validPassword(password, user){
@@ -113,15 +88,15 @@ passport.deserializeUser(function(id, done) {
 //obtener usuarios
 app.get("/user/:id",isLogged, controller.getUser);//user and admin
 
-app.get("/users", isAdmin, controller.getUsers);//admin
+app.get("/users", isLogged, controller.getUsers);//admin
 app.get("/users/:materia", isAdmin, controller.getUsersformateria);//admin
 
 //Eliminar usuario (admin)
 app.post("/deleteUser/:id", isAdmin, controller.deleteUser);
 
 //Editar usuario (usuarios)
-app.get("/editUser/:id", isUser, controller.getEditForm);
-app.post("/editUser/:id", isUser, controller.postEditUser);
+app.get("/editUser/:id", isLogged, controller.getEditForm);
+app.post("/editUser/:id", isLogged, controller.postEditUser);
 
 //Editar usuarios (admin)
 app.get("/editUserAdmin/:id", isAdmin, controller.getEditFormAdmin);
