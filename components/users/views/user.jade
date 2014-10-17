@@ -38,6 +38,6 @@ block content
                       div(class="modal-footer")
                         button(data-dismiss="modal").btn.btn-default Cancelar
                           button(type="submit").btn.btn-danger Eliminar
-          if (isUser)
+          if (isLogged)
             div.well
               a(href='/editUser/'+ result._id).btn.btn-warning Editar
