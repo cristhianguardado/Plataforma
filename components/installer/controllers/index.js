@@ -25,6 +25,7 @@ exports.postFirstUser = function(req, res) {
 				fullName: body.fullName,
 				matricula: body.matricula,
 				materia: "profesor",
+				equipo: 0,
 				password: secure.encrypt(body.password),
 				isAdmin: true,
 				isUser: false
@@ -56,8 +57,8 @@ exports.getFinish = function(req, res) {
 		title: "Felicidades",
 	}
 	res.render("finish", render);
-	//setTimeout(function() {
-		//console.log("Se a guardado su primer usuario. Por favor reinicia la aplicacion")
-		//process.exit();
-	//}, 2000);
+	setTimeout(function() {
+		console.log("Se a guardado su primer usuario. Por favor reinicia la aplicacion")
+		process.exit();
+	}, 2000);
 }

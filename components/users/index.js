@@ -130,7 +130,7 @@ app.post("/editUserAdmin/:id", isAdmin, controller.postEditUserAdmin);
 app.get("/login", controller.getLogin);
 app.post("/login",
   passport.authenticate('local', { 
-    successRedirect: '/',
+    successRedirect: '/users',
     failureRedirect: '/login',
     failureFlash: true })
 );

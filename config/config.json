@@ -1,5 +1,5 @@
 {
-  "mongodburi": "mongodb://localhost/expressjsmvc",
+  "mongodburi": "mongodb://localhost/express",
   "secretKey": "your-secret-key-goes-here",
   "enableIO": true,
   "components": [

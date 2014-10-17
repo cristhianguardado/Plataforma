@@ -5,12 +5,14 @@ block content
     div.row
       div.col-md-6.col-md-offset-3
         h1= title
+        h2= fullName
         hr
         - if (messages.error)
           div.alert.alert-danger.alert-dismissable
             button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
             span= messages.error
         form(method="post").well
+          input(type="hiden" name="materia" id="materia" value=result.materia)
           div.form-group
             label(for="fullName") Nombre completo :
             input(name="fullName", id="fullName", value=result.fullName).form-control

@@ -5,6 +5,7 @@ block content
     div.row
       div.col-md-6.col-md-offset-3
         h1= title
+        h2= result.fullName
         hr
         - if (messages.error)
           div.alert.alert-danger.alert-dismissable
@@ -23,10 +24,7 @@ block content
           div.form-group
             label(for="equipo") Equipo 
             input(type="text", name="equipo", id="equipo", value=result.equipo).form-control
-          //div.form-group
-            label Materia
-            input(type="checkbox" name="materia1" value="validacion") Validacion
-            input(type="checkbox" name="materia2" value="verificacion") Verificacion
+
           div.form-group
             label(for="password") Password:
             input(type="password", name="password", id="password").form-control
