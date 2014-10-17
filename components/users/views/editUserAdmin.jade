@@ -13,6 +13,7 @@ block content
             span= messages.error
         form(method="post").well
           div.form-group
+            input(type="hidden" name="materia" id="materia" value=result.materia)
             label(for="fullName") Nombre completo :
             input(name="fullName", id="fullName", value=result.fullName).form-control
           div.form-group
@@ -24,7 +25,6 @@ block content
           div.form-group
             label(for="equipo") Equipo 
             input(type="text", name="equipo", id="equipo", value=result.equipo).form-control
-
           div.form-group
             label(for="password") Password:
             input(type="password", name="password", id="password").form-control
@@ -32,4 +32,7 @@ block content
             label(for="passwordconfi") Confirmar password
             input(type="password", name="passwordconfi", id="passwordconfi").form-control
           div.form-group
+            label Materia
+            each (course in courses)
+              input(type="checkbox" name="materia" id="materia" value=course.name)
             button(type="submit").btn.btn-success Enviar

@@ -132,6 +132,7 @@ exports.postEditUser = function(req, res) {
 				email: body.email,
 				fullName: body.fullName,
 				matricula: body.matricula,
+				materia: body.materia,
 				password: secure.encrypt(body.password),
 				user: true,
 				admin: false
@@ -185,6 +186,7 @@ exports.getEditFormAdmin = function(req, res){
 
 //Editar usuario (admin)
 exports.postEditUserAdmin = function(req, res) {
+	console.log(req.body.materia)
 	var id = req.params.id;
 	var body = req.body;
 	var email = req.body.email;

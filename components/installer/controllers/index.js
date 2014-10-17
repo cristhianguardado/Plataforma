@@ -24,7 +24,7 @@ exports.postFirstUser = function(req, res) {
 				email: email,
 				fullName: body.fullName,
 				matricula: body.matricula,
-				materia: "profesor",
+				materia: "Profesor",
 				equipo: 0,
 				password: secure.encrypt(body.password),
 				isAdmin: true,
