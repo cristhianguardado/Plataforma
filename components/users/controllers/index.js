@@ -37,6 +37,7 @@ exports.getUsers = function(req, res) {
 			res.send(406, err)
 		}
 		if(results) {
+			console.log(results);
 			Courses.find(function(err, courses){
 				if(err){
 					console.log(err);
@@ -132,6 +133,7 @@ exports.postEditUser = function(req, res) {
 				email: body.email,
 				fullName: body.fullName,
 				matricula: body.matricula,
+				materia: body.materia,
 				password: secure.encrypt(body.password),
 				user: true,
 				admin: false
@@ -139,8 +141,8 @@ exports.postEditUser = function(req, res) {
 			console.log(user)
 			Model.findOneAndUpdate({_id: id}, user, function(err, result){
 				if(err) {
-					req.flash('error', 'Usuario con el correo electronico: ' + email + 'ya existe');
-					res.redirect('/editUser/' + id);
+					//req.flash('error', 'Usuario con el correo electronico: ' + email + 'ya existe');
+					//res.redirect('/editUser/' + id);
 				}
 				if(result) {
 					res.redirect('/user/' + result._id);			
@@ -165,13 +167,27 @@ exports.getEditFormAdmin = function(req, res){
 		}
 		if(result){
 			console.log(result)
-			res.render('editUserAdmin',{title: "Editar informacion de:" , result: result});
+			Courses.find(function(err, courses){
+				if(err){
+					console.log(err);
+				}
+				if(courses){
+					var render = {
+						title: "Editar informacion de: ", 
+						result: result, 
+						courses: courses
+					}
+					res.render('editUserAdmin', render);
+				}
+
+			})
 		}
 	});
 };
 
 //Editar usuario (admin)
 exports.postEditUserAdmin = function(req, res) {
+	console.log(req.body.materia)
 	var id = req.params.id;
 	var body = req.body;
 	var email = req.body.email;
@@ -192,8 +208,9 @@ exports.postEditUserAdmin = function(req, res) {
 			console.log(user)
 			Model.findOneAndUpdate({_id: id}, user, function(err, result){
 				if(err) {
-					req.flash('error', 'Usuario con el correo electronico: ' + email + 'ya existe');
-					res.redirect('/editUserAdmin/' + id);
+					console.log(err);
+					//req.flash('error', 'Usuario con el correo electronico: ' + email + 'ya existe');
+					//res.redirect('/editUserAdmin/' + id);
 				}
 				if(result) {
 					res.redirect('/users');			
@@ -213,21 +230,21 @@ exports.getLogin = function(req, res) {
   res.render("login" , {title: "Log in"});
 }
 
-exports.postLogin = function(req, res) {
-  Model.findOne({_id: id}, function(err, result) {
-  	if (err){
-  		console.log(err)
-  	}
-  	if(result){
-  		console.log("que pedo")
-  		passport.authenticate("local", {
-    		successRedirect: "/user/" + result._id,
-    		failureRedirect: "/login",
-    		failureFlash: true
-  		});
-  	}
-  });
-}
+// exports.postLogin = function(req, res) {
+//   Model.findOne({_id: id}, function(err, result) {
+//   	if (err){
+//   		console.log(err)
+//   	}
+//   	if(result){
+//   		console.log("que pedo")
+//   		passport.authenticate("local", {
+//     		successRedirect: "/user/" + result._id,
+//     		failureRedirect: "/login",
+//     		failureFlash: true
+//   		});
+//   	}
+//   });
+// }
 
 exports.getLogout = function(req, res) {
   req.logout();

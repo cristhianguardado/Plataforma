@@ -4,6 +4,7 @@ var Model = require("./models");
 var mongoose = require('mongoose');
 var User = require("../users/models");
 
+<<<<<<< HEAD
 function isUser(req, res, next) {
   if (req.session.passport.user){
     User.findOne({_id: req.session.passport.user}, function(err, result){
@@ -26,11 +27,18 @@ function isUser(req, res, next) {
         }
       }
     })
+=======
+function isLogged(req, res, next){
+  if(!req.session.passport.user){
+    res.redirect("/login");
+    next();
+  }else{
+    app.locals.isLogged = true;
+    app.locals.session = req.session.passport.user;
+    next();
+>>>>>>> manejo_sesion
   }
-  else{
-    res.redirect('/login');
-  }
-}
+};
 
 function isAdmin(req, res, next) {
   if (req.session.passport.user){    
@@ -61,7 +69,7 @@ function isAdmin(req, res, next) {
 }
 
 //obtener actividad (user)
-app.get('/activity/:id/:id', isUser, controller.getactivity);
+app.get('/activity/:id/:id', isLogged, controller.getactivity);
 
 //obtener actividades (admin)
 app.get('/activities', isAdmin, controller.getactivities);

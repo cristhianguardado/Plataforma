@@ -11,7 +11,7 @@ function firstUser(req, res, next) {
 		}
 
 		if(result.length > 0) {
-			console.log(result);
+			console.log("hello" + result);
 			return res.redirect("/403");
 		}
 

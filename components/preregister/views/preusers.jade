@@ -3,14 +3,14 @@ extends ../../../views/layout
 block content
   div.container 
     div.row
-      div.col-md-12
+      div.col-md-12.col-md-offset-.5
         h1.text-center Usuarios
         div.form-group
           - if (messages.error)
             div.alert.alert-danger.alert-dismissable
               button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
               span= messages.error 
-          div.table-responsive
+          div.table
             table.table.table-striped
               tr 
                 td Id

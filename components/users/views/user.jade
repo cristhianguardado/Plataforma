@@ -22,6 +22,22 @@ block content
           if (isAdmin)
             div.well
               a(href='/editUserAdmin/'+ result._id).btn.btn-warning Editar
-          if (isUser)
+              a(data-toggle="modal" data-target="#myModal1").btn.btn-danger.pull-right Eliminar
+              form(method="post", action="/deleteUser/" + result._id)
+                div(class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+                  div(class="modal-dialog")
+                    div(class="modal-content")
+                      div(class="modal-header")
+                        button(class="close" data-dismiss="modal")
+                          span(aria-hidden="true") &times;
+                            span(class="sr-only") Close
+                        h4(class="modal-title" id="myModalLabel") Desea eliminar el usuario?
+                      div(class="modal-body")
+                        p Esta seguro que desea eliminar al Usuario?
+                        p= result.fullName
+                      div(class="modal-footer")
+                        button(data-dismiss="modal").btn.btn-default Cancelar
+                          button(type="submit").btn.btn-danger Eliminar
+          if (isLogged)
             div.well
               a(href='/editUser/'+ result._id).btn.btn-warning Editar
