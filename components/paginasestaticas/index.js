@@ -7,6 +7,3 @@ app.get("/", controller.frontpage);
 app.get("/403", controller.error403);
 app.get("/404", controller.error404);
 app.get("/error", controller.error);
-
-//prueba
-app.get("/test", controller.test);

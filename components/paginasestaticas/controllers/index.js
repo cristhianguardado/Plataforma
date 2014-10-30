@@ -17,8 +17,3 @@ exports.error404 = function(req, res){
 exports.error = function (req, res){
 	res.render("error");
 }
-
-//prueba
-exports.test = function(req, res) {
-	res.render("test", { title: "Caurosel"});
-}
