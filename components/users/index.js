@@ -7,19 +7,7 @@ var mongoose = require('mongoose');
 var passport = require("passport")
   , LocalStrategy = require('passport-local').Strategy;
 
-<<<<<<< HEAD
-/*function isUSer(req, res, next){
-=======
-function isLogged(req, res, next){
->>>>>>> manejo_sesion
-  if(!req.session.passport.user){
-    res.redirect("/login");
-    next();
-  }else{
-<<<<<<< HEAD
-    next();
-  }
-};*/
+
 
 function isUser(req, res, next) {
   if (req.session.passport.user){
@@ -47,11 +35,7 @@ function isUser(req, res, next) {
   }
   else{
     res.redirect('/login');
-=======
-    app.locals.isLogged = true;
-    app.locals.session = req.session.passport.user;
     next();
->>>>>>> manejo_sesion
   }
 };
 
@@ -83,7 +67,6 @@ function isAdmin(req, res, next) {
   }
 }
 
-<<<<<<< HEAD
 function isLogged(req, res, next){
   if(!req.session.passport.user){
     res.redirect("/login");
@@ -94,8 +77,6 @@ function isLogged(req, res, next){
     next();
   }
 };
-=======
->>>>>>> manejo_sesion
 
 
 function validPassword(password, user){
@@ -153,11 +134,7 @@ app.get("/editUserAdmin/:id", isAdmin, controller.getEditFormAdmin);
 app.post("/editUserAdmin/:id", isAdmin, controller.postEditUserAdmin);
 
 app.get("/login", controller.getLogin);
-<<<<<<< HEAD
 app.post("/login", 
-=======
-app.post("/login",
->>>>>>> manejo_sesion
   passport.authenticate('local', { 
     successRedirect: '/users',
     failureRedirect: '/login',

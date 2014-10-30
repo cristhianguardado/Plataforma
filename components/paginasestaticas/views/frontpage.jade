@@ -1,26 +1,24 @@
-extends ../../../views/layout_frontpage
+extends ../../../views/layout
 
 block content
-	header 
-    div.col-md-12.col-md-offset-.5
-      a(href="/newcourse").btn.btn-primary.pull-right Agregar Curso
-	div.container
-		div.row
-			div.col-lg-4.col-lg-offset-4
-	      h1= title
-	      - if (messages.error)
-	        div.alert.alert-danger.alert-dismissable
-	          button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
-	          span= messages.error
-	      form(action="/login", method="post", role="form").form-group.well
-	        div.form-group
-	          label(for="username") Username:
-	          input(type="text", name="username", id="username").form-control
-	        div.form-group
-	          label(for="password") Password:
-	          input(type="password", name="password", id="password").form-control
-	        div.form-group
-	          a(href="/recoverpassword").text.center Has olvidado tu contraseña?
-	          br
-	          br
-	          button(type="submit").btn.btn-success Sing in
+  div.container
+    a(href="/preregister").btn.btn-primary.pull-right Registrate!
+    div.row
+      div.col-lg-4.col-lg-offset-4
+        h1= title
+        - if (messages.error)
+          div.alert.alert-danger.alert-dismissable
+            button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+            span= messages.error
+        form(action="/login", method="post", role="form").form-group.well
+          div.form-group
+            label(for="username") Username:
+            input(type="text", name="username", id="username").form-control
+          div.form-group
+            label(for="password") Password:
+            input(type="password", name="password", id="password").form-control
+          div.form-group
+            a(href="/recoverpassword").text.center Has olvidado tu contraseña?
+            br
+            br
+            button(type="submit").btn.btn-success Sing in
