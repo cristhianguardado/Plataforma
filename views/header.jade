@@ -19,11 +19,10 @@ div#wrapper
           ul.nav.navbar-nav.pull-right
             li.active
               a(href="/login") Login
-        if (locals.isLogged) 
+        if (locals.isAdmin)
           ul.nav.navbar-nav.pull-right
             li.active
               a(href="/logout") Cerrar session
-        if (locals.isAdmin)
           ul.nav.navbar-nav.pull-right
             li.active
               a(href="/preusers") Admón. Pre-usuarios
@@ -43,7 +42,10 @@ div#wrapper
             li.active
               a(href="/user/" + session) Mi Perfil
         
-        if (locals.isLogged)
+        else if (locals.isLogged)
+          ul.nav.navbar-nav.pull-right
+            li.active
+              a(href="/logout") Cerrar session
           ul.nav.navbar-nav.pull-right
               li.active
                 a(href="/courses") Admón de Cursos

@@ -8,37 +8,6 @@ var passport = require("passport")
   , LocalStrategy = require('passport-local').Strategy;
 
 
-
-function isUser(req, res, next) {
-  if (req.session.passport.user){
-    Model.findOne({_id: req.session.passport.user}, function(err, result){
-      if(err){
-        console.log(err);
-      }
-      if(result){
-        console.log(req.isAuthenticated);
-        var isAdmin = result.isAdmin;
-        var isUser = result.isUse;
-        if(isUser == true){
-          app.locals.isAdmin = false;
-          app.locals.isUser = true;
-          app.locals.isLogged = true;
-          app.locals.session = req.session.passport.user;
-          next();
-        }
-        else{
-          res.redirect("/403");
-          next();
-        }
-      }
-    })
-  }
-  else{
-    res.redirect('/login');
-    next();
-  }
-};
-
 function isAdmin(req, res, next) {
   if (req.session.passport.user){    
     Model.findOne({_id: req.session.passport.user}, function(err, result){
@@ -119,7 +88,7 @@ passport.deserializeUser(function(id, done) {
 //obtener usuario
 app.get("/user/:id",isLogged, controller.getUser);//user and admin
 
-app.get("/users", isLogged, controller.getUsers);//admin
+app.get("/users", isAdmin, controller.getUsers);//admin
 app.get("/users/:materia", isAdmin, controller.getUsersformateria);//admin
 
 //Eliminar usuario (admin)
@@ -136,8 +105,8 @@ app.post("/editUserAdmin/:id", isAdmin, controller.postEditUserAdmin);
 app.get("/login", controller.getLogin);
 app.post("/login", 
   passport.authenticate('local', { 
-    successRedirect: '/users',
-    failureRedirect: '/login',
+    successRedirect: '/homepage',
+    failureRedirect: '/',
     failureFlash: true })
 );
 

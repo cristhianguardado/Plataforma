@@ -251,5 +251,5 @@ exports.getLogout = function(req, res) {
   app.locals.isAdmin = false;
   app.locals.isUser = false;
   app.locals.isLogged = false;
-  res.redirect("/login");
+  res.redirect("/");
 }

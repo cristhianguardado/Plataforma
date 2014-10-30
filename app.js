@@ -15,6 +15,8 @@ var passport = require("passport")
   , LocalStrategy = require('passport-local').Strategy;
 var stylus = require('stylus');
 var nib = require('nib');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 
 // Alloy all configuration to be available in app.config
@@ -35,6 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('keyboard cat'));
+
 //app.use(express.session({ cookie: { maxAge: 60000 }}));
 
 
@@ -60,7 +63,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(app.router);
-//app.use(logErrors);
+app.use(bodyParser());
+app.use(methodOverride());
 app.use(clientErrorHandler);
 app.use(errorHandler);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -73,6 +77,8 @@ function compile(str, path) {
   return stylus(str)
     .set('filename', path)
     .use(nib())
+    console.log(str);
+    console.log(path);
 }
 
 app.use(stylus.middleware(
