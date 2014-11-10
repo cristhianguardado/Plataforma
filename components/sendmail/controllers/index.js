@@ -79,7 +79,7 @@ exports.postenviocorreos = function(req, res){
 		}
 		if(results){
 			for(i=0; i <= results.length; i++ ){
-				//console.log(users[i].email);
+				console.log(results[i].email);
 				var smtpTransport = nodemailer.createTransport('SMTP',{
 					service: 'Gmail',
 					auth: {

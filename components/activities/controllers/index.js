@@ -54,6 +54,7 @@ exports.postnewactivity = function(req, res) {
 	});
 	activity.save(function (err, result) {
 		if(err) {
+			res.send(err);
 		}
 		if(result) {
 			res.redirect('/activities');			

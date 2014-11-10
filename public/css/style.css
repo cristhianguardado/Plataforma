@@ -10,7 +10,7 @@ a {
 
 /*Fotter*/
 #footer {
-	position: absolute;
+	position: fixed;
 }
 /*FrontPage*/
 body#forntpage {
