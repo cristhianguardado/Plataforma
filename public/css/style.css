@@ -8,8 +8,11 @@ a {
   color: #00B7FF;
 }
 
-
+/*Fotter*/
+#footer {
+	position: absolute;
+}
 /*FrontPage*/
-#frontpage {
-  background-image: url('../images/images.jpg');
+body#forntpage {
+	background-color: blue;  
 }
