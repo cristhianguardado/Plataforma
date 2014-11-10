@@ -64,10 +64,8 @@ exports.getsendmailmateria = function(req, res) {
 }
 
 exports.postenviocorreos = function(req, res){
-	var materia = req.params.materia;	
 	var body = req.body.mail;
 	var titulo  = req.body.titulo;
-	console.log(materia);
 	console.log(body);
 	console.log(titulo);
 	User.find({materia: materia}, function(err, results){
@@ -79,7 +77,7 @@ exports.postenviocorreos = function(req, res){
 		}
 		if(results){
 			for(i=0; i <= results.length; i++ ){
-				console.log(results[i].email);
+				//console.log(results[i].email);
 				var smtpTransport = nodemailer.createTransport('SMTP',{
 					service: 'Gmail',
 					auth: {
@@ -96,9 +94,11 @@ exports.postenviocorreos = function(req, res){
 			  }		    
 			  smtpTransport.sendMail(mailOptions, function(error, response){
 			    if(error){
+			    	console.log(error);
 				  	req.flash("error", "Correo electronico no se pudo enviar intentelo mas tarde");
 				  	res.redirect("/sendmail");	
 					}else{
+						console.log(response)
 				  	req.flash("envio", "Se envio correctamente el correo electronico");
 				  	res.redirect("/sendmail");	
 					}
