@@ -46,7 +46,6 @@ function isLogged(req, res, next){
 
 
 app.get("/", controller.frontpage);
-app.get("/homepage", isLogged, controller.homepage);
 app.get("/403", controller.error403);
 app.get("/404", controller.error404);
 app.get("/error", controller.error);

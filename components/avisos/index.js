@@ -29,8 +29,13 @@ function isAdmin(req, res, next) {
     res.redirect('/login');
   }
 }
-
-//rutas solo para admin
-app.get("/sendmail", isAdmin, controller.getsendmail);
-app.get("/sendmail/:materia", isAdmin, controller.getsendmailmateria);
-app.post("/sendmail", isAdmin, controller.postenviocorreos);
+//obtener cursos (admin)
+app.get('/avisos', isAdmin, controller.getaviso);
+//crear nuevo curso (admin)
+app.get('/newaviso', isAdmin, controller.newaviso);
+app.post('/newaviso', isAdmin, controller.postnewaviso);
+//editar curso (admin)
+app.get('/editaviso/:id', isAdmin, controller.editaviso);
+app.post('/editaviso/:id', isAdmin, controller.posteditaviso);
+//eliminar cursos (admin)
+app.post('/deleteaviso/:id', isAdmin, controller.deleteaviso);
