@@ -30,7 +30,7 @@ function isAdmin(req, res, next) {
   }
 }
 //obtener cursos (admin)
-app.get('/avisos', isAdmin, controller.getaviso);
+app.get('/avisos', isAdmin, controller.getavisos);
 //crear nuevo curso (admin)
 app.get('/newaviso', isAdmin, controller.newaviso);
 app.post('/newaviso', isAdmin, controller.postnewaviso);

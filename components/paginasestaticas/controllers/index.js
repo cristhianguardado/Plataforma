@@ -1,10 +1,6 @@
 var include = require("includemvc");
 var app = include.app();
 
-exports.frontpage = function(req, res) {
-	res.render("frontpage", { title: "Plataforma"});
-}
-
 exports.homepage = function (req, res){
 	res.render("homepage", {title: "Home Page"});
 }

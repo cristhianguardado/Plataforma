@@ -73,20 +73,6 @@ app.use(function(req, res, next){
   next();
 })
 
-function compile(str, path) {
-  return stylus(str)
-    .set('filename', path)
-    .use(nib())
-    console.log(str);
-    console.log(path);
-}
-
-app.use(stylus.middleware(
-  { src: __dirname + '/public'
-  , compile: compile
-  }
-))
-
 function clientErrorHandler(err, req, res, next) {
   if (req.xhr) {
     res.status(500).send({ error: 'Algo salio mal' });
