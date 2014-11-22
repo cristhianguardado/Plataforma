@@ -29,13 +29,9 @@ function isAdmin(req, res, next) {
     res.redirect('/login');
   }
 }
-//obtener cursos (admin)
 app.get('/avisos', isAdmin, controller.getavisos);
-//crear nuevo curso (admin)
 app.get('/newaviso', isAdmin, controller.newaviso);
 app.post('/newaviso', isAdmin, controller.postnewaviso);
-//editar curso (admin)
 app.get('/editaviso/:id', isAdmin, controller.editaviso);
 app.post('/editaviso/:id', isAdmin, controller.posteditaviso);
-//eliminar cursos (admin)
 app.post('/deleteaviso/:id', isAdmin, controller.deleteaviso);

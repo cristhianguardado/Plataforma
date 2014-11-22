@@ -11,7 +11,7 @@ block content
           div.alert.alert-danger.alert-dismissable
             button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
             span= messages.error
-        form(method="post").well
+        form(method="post" action="/editUserAdmin/" + result._id).well
           div.form-group
             input(type="hidden" name="materia" id="materia" value=result.materia)
             label(for="fullName") Nombre completo :
