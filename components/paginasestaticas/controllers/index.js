@@ -1,7 +1,15 @@
 var include = require("includemvc");
 var app = include.app();
+var Avisos = require("../../avisos/models");
+var Users = require("../../users/models");
 
 exports.homepage = function (req, res){
+	Avisos.find({materia: general}function(err, avisos){
+		if(err){
+			console.log(err);
+		}
+		if(avisos)
+	})
 	res.render("homepage", {title: "Home Page"});
 }
 

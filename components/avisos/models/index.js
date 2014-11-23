@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var Aviso = mongoose.model('Aviso',{
-	description: String,
+	aviso: String,
 	materia: String,
 	created: {type: Date, default: Date.now }
 });

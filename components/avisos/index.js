@@ -30,8 +30,11 @@ function isAdmin(req, res, next) {
   }
 }
 app.get('/avisos', isAdmin, controller.getavisos);
+
 app.get('/newaviso', isAdmin, controller.newaviso);
-app.post('/newaviso', isAdmin, controller.postnewaviso);
+app.post('/newaviso', controller.postnewaviso);
+
 app.get('/editaviso/:id', isAdmin, controller.editaviso);
-app.post('/editaviso/:id', isAdmin, controller.posteditaviso);
-app.post('/deleteaviso/:id', isAdmin, controller.deleteaviso);
+app.post('/editaviso/:id', controller.posteditaviso);
+
+app.post('/deleteaviso/:id', controller.deleteaviso);

@@ -51,14 +51,14 @@ exports.newaviso = function(req, res){
 exports.postnewaviso = function(req, res) {
 	var body = req.body;
 	var aviso = new Model({ 
-		descripcion: body.descripcion,
+		aviso: body.aviso,
 		materia: body.materia
 	});
 	aviso.save(function (err, result) {
 		if(err) {
 		}
 		if(result) {
-			res.redirect('/courses');			
+			res.redirect('/avisos');			
 		}
 	});
 };
@@ -74,7 +74,7 @@ exports.editaviso = function(req, res){
 		}
 		if(result){	
 			Materias.find(function(err, materias){
-				res.render('editcurso',{title: "Editar informacion del curso", result: result, materias: materias});
+				res.render('editaravisos',{title: "Editar informacion del curso", result: result, materias: materias});
 			})
 		}
 	});
@@ -84,15 +84,15 @@ exports.posteditaviso = function(req, res) {
 	var id = req.params.id;
 	var body = req.body;
 	var aviso = new Model({ 
-		descripcion: body.descripcion,
+		aviso: body.aviso,
 		materia: body.materia
 	});
-	Model.findOneAndUpdate({_id: id}, curso, function(err, result){
+	Model.findOneAndUpdate({_id: id}, aviso, function(err, result){
 		if(err) {
 			console.log(err)
 		}
 		if(result) {
-			res.redirect('/courses');			
+			res.redirect('/avisos');			
 		}
 	});
 };
@@ -104,7 +104,7 @@ exports.deleteaviso = function(req,res){
 			res.send(406, err);
 		}
 		if(result) {
-			res.redirect('/courses');
+			res.redirect('/avisos');
 		}
 	});
 };

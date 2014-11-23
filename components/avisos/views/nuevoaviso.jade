@@ -13,10 +13,13 @@ block content
               span= messages.error
           form(method="post" action="/newaviso")
             div.form-group
+              label Materias
+              br
               each materia  in result
                 input(type="checkbox", name="materia", value=materia.name)
                 = materia.name
                 br
+              br
               label(for="descripcion") Descripcion:
               textarea(name="aviso", id="aviso").form-control
             div.form-group

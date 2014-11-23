@@ -3,7 +3,7 @@ extends ../../../views/layout
 block content
   header 
     div.col-md-12.col-md-offset-.5
-      a(href="/newcourse").btn.btn-primary.pull-right Agregar Aviso
+      a(href="/newaviso").btn.btn-primary.pull-right Agregar Aviso
   br
   div.container 
     div.row
@@ -13,13 +13,17 @@ block content
           div.table
             table.table.table-striped
               tr 
-                td Nombre 
+                td Aviso
+                td Materia
+                td Fecha 
                 td Acciones
               each result in results 
                 tr 
-                  td= result.name 
+                  td!= result.aviso
+                  td= result.materia
+                  td= result.created
                   td 
-                    a(href="/editcourse/" + result._id).btn.btn-primary Editar
+                    a(href="/editaviso/" + result._id).btn.btn-primary Editar
                     br
                     br
                     a(data-toggle="modal" data-target="#myModal1").btn.btn-danger Eliminar
@@ -34,7 +38,7 @@ block content
                               h4(class="modal-title" id="myModalLabel") Desea eliminar el aviso?
                             div(class="modal-body")
                               p Esta seguro que desea eliminar el aviso?
-                              p= result.name
+                              p= result.aviso
                             div(class="modal-footer")
                               button(data-dismiss="modal").btn.btn-default Cancelar
                                 button(type="submit").btn.btn-danger Eliminar
