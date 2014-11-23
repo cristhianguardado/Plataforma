@@ -7,12 +7,22 @@ body {
 a {
   color: #00B7FF;
 }
-
+body{
+	background-image:url("../images/textura.jpg")
+}
+/*Header*/
+.header {
+	background-color: #086A87;
+}
 /*Fotter*/
 #footer {
-	position: fixed;
+	position: relative;
 }
 /*FrontPage*/
-body#forntpage {
-	background-color: blue;  
+.imageheader{
+	background-image:url("../images/logo.jpg")
+}
+/*Login*/
+#login {
+
 }

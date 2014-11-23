@@ -1,7 +1,6 @@
 var include = require("includemvc");
 var controller = include.controller("installer");
 var app = include.app();
-//var firstUserExists = include.lib("firstUserExists");
 var Model = include.model("users");
 
 function firstUser(req, res, next) {	

@@ -1,23 +1,29 @@
 extends ../../../views/layoutfrontpage
 
 block content
-  div.container-fluid
+  div(id="login").container-fluid
     div.row
-      div.col-lg-4.col-lg-offset-4
+      div.col-md-12.col-md-offset-.5
         h1= title
         - if (messages.error)
           div.alert.alert-danger.alert-dismissable
             button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
             span= messages.error
-        form(action="/login", method="post", role="form").form-group.well
-          div.form-group
-            label(for="username") Username:
-            input(type="text", name="username", id="username").form-control
-          div.form-group
-            label(for="password") Password:
-            input(type="password", name="password", id="password").form-control
-          div.form-group
-            a(href="/recoverpassword").text.center Has olvidado tu contraseña?
-            br
-            br
-            button(type="submit").btn.btn-success Sing in
+        div.col-xs-6
+          form(action="/login", method="post", role="form").form-group.well
+            div.form-group
+              label(for="username") Username:
+              input(type="email", name="username", id="username").form-control
+            div.form-group
+              label(for="password") Password:
+              input(type="password", name="password", id="password").form-control
+            div.form-group
+              a(href="/recoverpassword").text.center Has olvidado tu contraseña?
+              br
+              br
+              button(type="submit").btn.btn-success Sing in
+        div.col-xs-6
+          section
+            h4.text-center Aun no te has Registrado?
+            p Realiza tu Pre-registro y espera a que sea autorizado tu registro para poder accender.
+            a(href="/preregister").btn.btn-primary Pre-registro

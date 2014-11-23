@@ -7,6 +7,13 @@ var User = mongoose.model('User',{
 	matricula: { type: String, index:{unique: true}},
 	materia: String,
 	equipo: Number,
+	calificacion1: Number,
+	calificacion2: Number,
+	calificacion3: Number,
+	calificacion4: Number,
+	calificacion5: Number,
+	calmediocurso: Number,
+	calfinal: Number,
 	isAdmin: Boolean, 
 	isUser: Boolean,
 	created: {type: Date, default: Date.now }
