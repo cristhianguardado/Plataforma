@@ -46,7 +46,7 @@ exports.getUsers = function(req, res) {
 					var render = {
 						results: results, 
 						courses: courses,
-						title: "Usuarios"
+						title: "Administracion de Usuarios"
 					}
 					res.render('users', render);	
 				}

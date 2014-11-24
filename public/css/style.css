@@ -83,6 +83,19 @@ a {
 	padding-bottom: 4em;
 }
 
+/*Users*/
+#users {
+	padding-top: 2em;
+}
+#tablematerias {
+	padding-top: 1em;
+	padding-left: 17em;
+}
+#tableusuarios {
+	padding-top: 1em;
+	padding-left: 7em;
+}
+
 /*404*/
 #error404{
 	background-image:url("../images/.jpg");

@@ -1,18 +1,19 @@
 extends ../../../views/layout
 
 block content
-  div.container 
+  div(id="users").container 
     div.row
       div.col-md-12
-        h1.text-center Administracion de Usuarios
+        h1.text-center= title
         div.form-group
           - if (messages.error)
             div.alert.alert-danger.alert-dismissable
               button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
               span= messages.error 
-          div.col-xs-9.col-md-12
-            table.table
+          div(id="tablematerias").col-xs-4.col-md-10
+            table.table.table-striped
               h3.text-center Filtrar por materia
+              br
               tr
                 td Materia 
                 td Accion
@@ -21,12 +22,13 @@ block content
                   tr
                     td=course.name
                     td
-                      button(type="submit").btn.btn-default.btn-xs Buscar
-          hr
-          div.col-md-12.col-md-offset-.5
+                      button(type="submit").btn.btn-success.btn-xs Buscar 
+                        span.glyphicon.glyphicon-search
+          div(id="tableusuarios").col-md-12.col-md-offset-.5
             div.table
               table.table.table-striped 
                 h3.text-center Alumnos
+                br
                 tr 
                   td Nombre 
                   td Email
@@ -43,10 +45,12 @@ block content
                       td= result.materia 
                       td usuario
                       td 
-                        a(href="/editUserAdmin/" + result._id).btn.btn-primary.pull-rigth Editar
+                        a(href="/editUserAdmin/" + result._id).btn.btn-primary.pull-rigth Editar 
+                          span.glyphicon.glyphicon-edit
                         br
                         br
-                        a(data-toggle="modal" data-target="#myModal"+ result._id).btn.btn-danger.pull-left Eliminar
+                        a(data-toggle="modal" data-target="#myModal"+ result._id).btn.btn-danger.pull-left Eliminar 
+                          span.glyphicon.glyphicon-remove
                         form(method="post", action="/deleteUser/" + result._id)
                           div(class="modal fade" id="myModal"+result._id tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
                             div(class="modal-dialog")
