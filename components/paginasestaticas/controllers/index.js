@@ -15,11 +15,11 @@ exports.homepage = function (req, res){
 }
 
 exports.error403 = function(req, res){
-	res.render("403", { title: "Acceso denegado"});
+	res.render("403");
 }
 
 exports.error404 = function(req, res){
-	res.render("404", {title: "Pagina no encontrada"});
+	res.render("404");
 }
 
 exports.error = function (req, res){

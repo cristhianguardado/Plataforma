@@ -82,3 +82,14 @@ a {
 #btnenvio {
 	padding-bottom: 4em;
 }
+
+/*404*/
+#error404{
+	background-image:url("../images/.jpg");
+	background-repeat: no-repeat;
+	height: 20em;
+	padding-top: 2em;
+	padding-right: 2em;
+	padding-bottom: 2em;
+	padding-left: 2em;
+}
