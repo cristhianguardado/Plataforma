@@ -1,10 +1,10 @@
 extends ../../../views/layout
 
 block content
-  div.container 
+  div(id="sendmail").container 
     div.row
-      div.col-md-12
-        h1.text-center Administracion de Usuarios
+      div.col-md-12.col-md-offset-.5
+        h1.text-center= title
         div.form-group
           - if (messages.error)
             div.alert.alert-danger.alert-dismissable
@@ -14,41 +14,45 @@ block content
             div.alert.alert-danger.success-dismissable
               button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
               span= messages.envio 
-          div.col-md-6.col-md-offset-3
-            table.table.table-striped 
-              h4.text-center Filtrar por materia
-              tr
-                td Materia 
-                td Accion
-              each course in courses
-                form(method="get" action="/sendmail/"+course.name)
-                  tr
-                    td=course.name
-                    td
-                      button(type="submit").btn.btn-default.btn-xs Buscar
-          br
-          div.col-xs-12.col-sm-6.col-md-8
-            form(method="post" action="/sendmail")
-              div.table-responsive
-                table.table.table-striped 
-                  h4.text-center Alumnos
+          div(id="tablamaterias").col-md-6.col-md-offset-3
+            div.table
+              table.table.table-striped
+                h3.text-center Filtrar por materia
+                tr
+                  td Materia 
+                  td Accion
+                each course in courses
+                  form(method="get" action="/sendmail/"+course.name)
+                    tr
+                      td=course.name
+                      td
+                        button(type="submit").btn.btn-default.btn-xs Buscar
+          div(id="tablaalumnos").col-md-6
+            div.table
+              table.table.table-striped 
+                h3.text-center Alumnos
+                tr 
+                  td Nombre 
+                  td Matricula
+                  td Email
+                  td Materia
+                each result in results
                   tr 
-                    td Nombre 
-                    td Matricula
-                    td Materia
-                  each result in results
-                    tr 
-                      td= result.fullName 
-                      td= result.matricula
-                      td= result.materia 
-              br
+                    td= result.fullName 
+                    td= result.matricula
+                    td= result.email
+                    td= result.materia 
+          div(id="formcorreo").col-md-6    
+            form(method="post" action="/sendmail")
               div.form-group
-                h4.text-center Titulo del correo 
+                h3.text-center Titulo del correo 
                 input(type="text" name="titulo" id="titulo").form-control
               div.form-group
-                h4.text-center Contenido de correo
+                h3.text-center Contenido de correo
                 textarea(name="mail", id="mail").form-control
-                button(type="submit").btn.btn-primary Enviar
+              div(id="btnenvio").form-group
+                button(type="submit").btn.btn-primary.pull-right Enviar  
+                  span.glyphicon.glyphicon-envelope
 
 block scripts
   script(type="text/javascript").

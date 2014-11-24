@@ -3,13 +3,15 @@ extends ../../../views/layout
 block content
   header
     br 
-    div.col-md-12.col-md-offset-.5
-      a(href="/newcourse").btn.btn-primary.pull-right Agregar Curso
+    div.col-md-10.col-md-offset-.5
+      a(href="/newcourse").btn.btn-primary.pull-right Agregar Curso 
+        sapn.glyphicon.glyphicon-plus
   br
   div.container 
     div.row
-      div.col-md-12.col-md-offset-.5
+      div.col-md-10.col-md-offset-1
         h1.text-center Administracion de Cursos
+        br
         div.form-group
           div.table
             table.table.table-striped
@@ -20,10 +22,12 @@ block content
                 tr 
                   td= result.name 
                   td 
-                    a(href="/editcourse/" + result._id).btn.btn-primary Editar
+                    a(href="/editcourse/" + result._id).btn.btn-primary Editar 
+                      span.glyphicon.glyphicon-edit
                     br
                     br
-                    a(data-toggle="modal" data-target="#myModal1").btn.btn-danger Eliminar
+                    a(data-toggle="modal" data-target="#myModal1").btn.btn-danger Eliminar 
+                      sapn.glyphicon.glyphicon-remove
                     form(method="post", action="/deletecourse/" + result._id)
                       div(class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
                         div(class="modal-dialog")

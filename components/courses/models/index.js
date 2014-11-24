@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var Materia = mongoose.model('Materia',{
-	name: String,
+	name: {type: String, index:{unique: true}},
 	created: {type: Date, default: Date.now }
 });
 

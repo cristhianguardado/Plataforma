@@ -1,12 +1,16 @@
 extends ../../../views/layout
 
 block content
-  div.container
+  header
+    br 
+    div.col-md-12.col-md-offset-2
+      a(href="/courses").btn.btn-success.pull-left Regresar     
+        sapn.glyphicon.glyphicon-arrow-left
+  div(id="newcourse").container
     div.row
-      div.col-md-12.col-md-offset-.5
-        h1!= title
-        div.well
-          hr
+      div.col-md-6.col-md-offset-3
+        h1.text-center!= title
+        div(id="formnewcourse")
           - if (messages.error)
             div.alert.alert-danger.alert-dismissable
               button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
@@ -15,8 +19,10 @@ block content
             div.form-group
               p Introduce porfavor el nombre del curso, frecuencia y hora  
               br 
-              p Ejemplo: Verificacion y validacion, L,M,V, V1 
+              p Ejemplo: Verificacion y validacion, L,M,V, V1
+              br
               label(for="name") Curso:
               input(type="text", name="name", id="name").form-control
             div.form-group
-              button(type="submit").pull-rigth.btn.btn-success Enviar
+              button(type="submit").btn.btn-success.pull-right Agregar  
+                sapn.glyphicon.glyphicon-plus

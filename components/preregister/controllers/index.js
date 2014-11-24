@@ -46,8 +46,8 @@ exports.postNewUser = function(req, res) {
 					res.redirect('/preregister');
 				}
 				if(result) {
-					req.flash("success", "Felicidades has quedado registrado");
-					res.redirect('/');			
+					req.flash('success', 'Felicidades tu registro a sido concluido');
+					res.redirect('/login');			
 				}
 			});
 		}else{

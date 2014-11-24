@@ -16,7 +16,7 @@ block content
             input(type="text", name="fullName", id="fullName").form-control
           div.form-group
             label(for="matricula") Matricula
-            input(type="number", name="matricula", id="matricula", maxlength="7").form-control
+            input(type="text", name="matricula", id="matricula", maxlength="7").form-control
           div.form-group
             label(for="email") Email
             input(type="email", name="email", id="email").form-control
@@ -24,7 +24,7 @@ block content
             label Materia
             br
             each materia  in result
-              input(type="checkbox", name="materia", value=materia.name)
+              input(type="radio", name="materia", value=materia.name)
               = materia.name
               br  
           div.form-group
@@ -34,4 +34,5 @@ block content
             label(for="passwordconfi") Confirmar password
             input(type="password", name="passwordconfi", id="passwordconfi").form-control
           div.form-group
-            button(type="submit").btn.btn-success.pull-right Enviar
+            button(type="submit").btn.btn-success.pull-right Enviar 
+              sapn.glyphicon.glyphicon-ok

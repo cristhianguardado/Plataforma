@@ -1,11 +1,11 @@
 extends ../../../views/layout
 
 block content
-  div.container 
+  div(id="preregister").container 
     div.row
       div.col-md-12.col-md-offset-.5
-        h1.text-center Usuarios
-        div.form-group
+        h1.text-center= title
+        div(id="listapreregistro").form-group
           - if (messages.error)
             div.alert.alert-danger.alert-dismissable
               button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
@@ -13,7 +13,6 @@ block content
           div.table
             table.table.table-striped
               tr 
-                td Id
                 td Nombre 
                 td Email
                 td Matricula
@@ -21,14 +20,15 @@ block content
                 td Acciones
               each result in results
                 tr 
-                  td= result._id
                   td= result.fullName 
                   td= result.email
                   td= result.matricula
                   td= result.materia 
                   td 
                     form(method="post", action="/aceptUser/" + result._id)
-                      button(type="submit").btn.btn-primary Agregar
+                      button(type="submit").btn.btn-primary Agregar 
+                        span.glyphicon.glyphicon-ok
                     br
                     form(method="post", action="/deletepreUser/" + result._id)
-                      button(type="submit" class="btn btn-danger") Eliminar
+                      button(type="submit" class="btn btn-danger") Eliminar 
+                        span.glyphicon.glyphicon-remove

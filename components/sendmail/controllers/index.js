@@ -66,8 +66,6 @@ exports.getsendmailmateria = function(req, res) {
 exports.postenviocorreos = function(req, res){
 	var body = req.body.mail;
 	var titulo  = req.body.titulo;
-	console.log(body);
-	console.log(titulo);
 	User.find({materia: materia}, function(err, results){
 		if (err){
 			console.log(err);
