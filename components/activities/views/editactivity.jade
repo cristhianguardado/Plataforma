@@ -1,33 +1,41 @@
 extends ../../../views/layout
 
 block content
-  header 
-    div.col-md-12.col-md-offset-.5
-      a(href="/activities").btn.btn-primary.pull-right Regresar
-  div.container 
+  header
+    br 
+    div.col-md-12.col-md-offset-2
+      a(href="/activities").btn.btn-success.pull-left Regresar     
+        sapn.glyphicon.glyphicon-arrow-left
+  div(id="activities").container
     div.row
-      div.col-md-12.col-md-offset-.5
-        h1= title
-        hr
-        - if (messages.error)
-          div.alert.alert-danger.alert-dismissable
-            button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
-            span= messages.error
-        form(method="post" action="/editactivity/"+ result._id).well
-          div.form-group
+      div.col-md-10.col-md-offset-1
+        h1.text-center!= title
+        div(id="formactivity")
+          - if (messages.error)
+            div.alert.alert-danger.alert-dismissable
+              button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
+              span= messages.error
+          form(method="post" action="/editactivity/"+ result._id)
+            div(id="actmaterias").form-group.text-center
+              label Materias
+              br
+              each materia  in materias
+                input(type="radio", name="materia", value=materia.name)
+                = materia.name
+                br
+            br
+            div(id="form").form-group
               label(for="name") Nombre de la actividad:
               input(type="text", name="name", id="name" value=result.name).form-control
-            div.form-group
-              label(for="materia") Materia:
-              input(type="text", name="materia", id="materia" value=result.materia).form-control
-            div.form-group
+            div(id="form").form-group
               label(for="explicacion") Explicaion de la actividad:
               textarea(type="text", name="explicacion", id="explicacion" value=result.explicacion).form-control
-            div.form-group
+            div(id="form").form-group
               label(for="deadline") Fecha limite de la entrega:
-              input(type="text", name="deadline", id="deadline" value=result.deadline).form-control
-          div.form-group
-            button(type="submit").btn.btn-success Enviar
+              input(type="date", name="deadline", id="deadline" value=result.deadline).form-control
+            div(id="form").form-group
+              button(id="btnact" type="submit").pull-right.btn.btn-success Confirmar 
+                span.glyphicon.glyphicon-edit
 
 block scripts
   script(type="text/javascript").

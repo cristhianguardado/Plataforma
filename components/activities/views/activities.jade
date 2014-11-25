@@ -1,13 +1,16 @@
 extends ../../../views/layout
 
 block content
+  header
+    br 
+    div.col-md-10.col-md-offset-.5
+      a(href="/newactivity").btn.btn-primary.pull-right Agregar Actividad  
+        sapn.glyphicon.glyphicon-plus
   br
-  header 
-    div.col-md-12.col-md-offset-.5
-      a(href="/newactivity").btn.btn-primary.pull-right Agregar actividad
   div.container 
     div.row
       div.col-md-12.col-md-offset-.5
+        h1.text-center!= title
         div.form-group
           br
           div.table
@@ -25,10 +28,12 @@ block content
                   td= result.materia
                   td= result.deadline 
                   td 
-                    a(href="/editactivity/" + result._id).btn.btn-primary Editar
+                    a(href="/editactivity/" + result._id).btn.btn-primary Editar 
+                      span.glyphicon.glyphicon-edit
                     br
                     br
                     a(data-toggle="modal" data-target="#myModal1").btn.btn-danger Eliminar
+                      sapn.glyphicon.glyphicon-remove
                     form(method="post", action="/deleteactivity/" + result._id)
                       div(class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
                         div(class="modal-dialog")

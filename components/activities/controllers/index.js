@@ -1,5 +1,6 @@
 var app = require("../../../app");
 var Model = require("../models");
+var Materias = require("../../courses/models");
 
 exports = module.exports;
 
@@ -40,7 +41,14 @@ exports.getactivities = function(req, res) {
 
 //Registro de actividad
 exports.newactivity = function(req, res){
-	res.render('newact', {title: "Registra una nueva actividad"});	
+	Materias.find(function(err, result){
+		if(err){
+			console.log(err);
+		}
+		if(result){
+			res.render('newact', {title: "Registra una nueva actividad", result: result});	
+		}
+	});
 }
 
 //Registro de actividad
@@ -64,7 +72,7 @@ exports.postnewactivity = function(req, res) {
 
 //Editar actividad
 exports.editactivity = function(req, res){
-	var id = req.params.id;
+		var id = req.params.id;
 	Model.findOne({_id: id}, function(err, result) {
 		if(err) {
 			res.send(406, err);
@@ -72,8 +80,15 @@ exports.editactivity = function(req, res){
 		if(!result){
 			res.redirect('/404');
 		}
-		if(result){
-			res.render('editactivity',{title: "Editar informacion de actividad", result: result});
+		if(result){	
+			Materias.find(function(error, materias){
+				if(error){
+					console.log(error);
+				}
+				if(materias){
+					res.render('editactivity',{title: "Editar actividad", result: result, materias: materias});
+				}
+			})
 		}
 	});
 };

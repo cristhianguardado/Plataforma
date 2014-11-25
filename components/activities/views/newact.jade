@@ -1,31 +1,41 @@
 extends ../../../views/layout
 
 block content
-  div.container
+  header
+    br 
+    div.col-md-12.col-md-offset-2
+      a(href="/activities").btn.btn-success.pull-left Regresar      
+        sapn.glyphicon.glyphicon-arrow-left
+  div(id="activities").container
     div.row
-      div.col-md-12.col-md-offset-.5
-        h1!= title
-        div.well
-          hr
+      div.col-md-10.col-md-offset-1
+        h1.text-center!= title
+        div(id="formactivity")
           - if (messages.error)
             div.alert.alert-danger.alert-dismissable
               button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
               span= messages.error
           form(method="post" action="/newactivity")
-            div.form-group
+            div(id="actmaterias").form-group.text-center
+              label Materias
+              br
+              each materia  in result
+                input(type="radio", name="materia", value=materia.name)
+                = materia.name
+                br
+            br
+            div(id="form").form-group
               label(for="name") Nombre de la actividad:
               input(type="text", name="name", id="name").form-control
-            div.form-group
-              label(for="materia") Materia:
-              input(type="text", name="materia", id="materia").form-control
-            div.form-group
+            div(id="form").form-group
               label(for="explicacion") Explicaion de la actividad:
               textarea(type="text", name="explicacion", id="explicacion").form-control
-            div.form-group
+            div(id="form").form-group
               label(for="deadline") Fecha limite de la entrega:
-              input(type="text", name="deadline", id="deadline").form-control
-            div.form-group
-              button(type="submit").pull-rigth.btn.btn-success Enviar
+              input(type="date", name="deadline", id="deadline").form-control
+            div(id="form").form-group
+              button(id="btnact" type="submit").pull-right.btn.btn-success Confirmar 
+                span.glyphicon.glyphicon-ok
 
 block scripts
   script(type="text/javascript").

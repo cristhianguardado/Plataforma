@@ -73,8 +73,13 @@ exports.editaviso = function(req, res){
 			res.redirect('/404');
 		}
 		if(result){	
-			Materias.find(function(err, materias){
-				res.render('editaravisos',{title: "Editar informacion del curso", result: result, materias: materias});
+			Materias.find(function(error, materias){
+				if(error){
+					console(error);
+				}
+				if(materias){
+					res.render('editaravisos',{title: "Editar informacion del curso", result: result, materias: materias});
+				}
 			})
 		}
 	});
