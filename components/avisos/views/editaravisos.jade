@@ -1,26 +1,35 @@
 extends ../../../views/layout
 
 block content
-  div.container
+  header
+    br 
+    div.col-md-12.col-md-offset-2
+      a(href="/avisos").btn.btn-success.pull-left Regresar     
+        sapn.glyphicon.glyphicon-arrow-left
+  div(id="newaviso").container
     div.row
-      div.col-md-12.col-md-offset-.5
-        h1!= title
-        div.well
-          hr
+      div.col-md-10.col-md-offset-1
+        h1.text-center!= title
+        div(id="formaviso")
           - if (messages.error)
             div.alert.alert-danger.alert-dismissable
               button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
               span= messages.error
           form(method="post" action="/editaviso/" + result._id)
-            div.form-group
+            div(id="materias").form-group.text-center
+              label Materias
+              br
               each materia  in materias
                 input(type="checkbox", name="materia", value=materia.name)
                 = materia.name
                 br
+              br
+            div(id="textarea").form-group    
               label(for="descripcion") Descripcion:
-              textarea(name="aviso", id="aviso").form-control
+              textarea(name="aviso", id="aviso" value=result.aviso).form-control
             div.form-group
-              button(type="submit").pull-rigth.btn.btn-success Enviar
+              button(id="btnnewaviso" type="submit").pull-right.btn.btn-success Editar  
+                span.glyphicon.glyphicon-edit
 block scripts
   script(type="text/javascript").
     CKEDITOR.replace('aviso');

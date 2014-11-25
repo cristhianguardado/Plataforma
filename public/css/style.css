@@ -96,6 +96,25 @@ a {
 	padding-left: 7em;
 }
 
+/*Avisos*/
+#newaviso {
+	padding-top: 5em;
+}
+#formaviso {
+	padding-top: 2em;
+}
+#materias {
+	padding-top: 1em;
+	padding-right: 3em;
+	font-size: 20px;
+}
+#textarea {
+	font-size: 20px;
+}
+#btnnewaviso {
+	margin-bottom: 1em;
+}
+
 /*404*/
 #error404{
 	background-image:url("../images/.jpg");
