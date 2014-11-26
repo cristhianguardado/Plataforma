@@ -34,7 +34,7 @@ block content
                   td Email
                   td Matricula
                   td Materia
-                  td Permisos
+                  td Equipo
                   td Acciones
                 each result in results
                   if (result.isUser == true)
@@ -43,7 +43,7 @@ block content
                       td= result.email
                       td= result.matricula
                       td= result.materia 
-                      td usuario
+                      td= result.equipo
                       td 
                         a(href="/editUserAdmin/" + result._id).btn.btn-primary.pull-rigth Editar 
                           span.glyphicon.glyphicon-edit

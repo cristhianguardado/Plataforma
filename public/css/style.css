@@ -16,6 +16,10 @@ a {
 #login h1{
 	padding-left: 8em;
 }
+#alert {
+	font-size: 20px;
+	text-align: center;
+}
 #formlogin {
 	padding-top: 4em;
 	padding-left: 10em;

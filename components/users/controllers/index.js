@@ -120,7 +120,7 @@ exports.getEditForm = function(req, res){
 		if(result){
 			console.log(result);
 			var render = {
-				title: "Editar informacion", 
+				title: "Editar informacion de: ", 
 				result: result
 			}
 			res.render('editUser', render);
@@ -180,10 +180,12 @@ exports.getEditFormAdmin = function(req, res){
 					console.log(err);
 				}
 				if(courses){
+					var password = secure.decrypt(result.password);
 					var render = {
 						title: "Editar informacion de: ", 
 						result: result, 
-						courses: courses
+						courses: courses,
+						password: password
 					}
 					res.render('editUserAdmin', render);
 				}

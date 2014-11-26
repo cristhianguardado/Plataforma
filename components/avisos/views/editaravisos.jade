@@ -20,7 +20,7 @@ block content
               label Materias
               br
               each materia  in materias
-                input(type="checkbox", name="materia", value=materia.name)
+                input(type="radio", name="materia", value=materia.name)
                 = materia.name
                 br
               br

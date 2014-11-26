@@ -5,7 +5,7 @@ block content
   header  
     div.col-md-6.col-md-offset-3
       - if (messages.success)
-        div.alert.alert-success.alert-dismissable
+        div(id="alert").alert.alert-success.alert-dismissable
           button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
           span.text-center= messages.success
   div(id="login").container-fluid
