@@ -33,4 +33,4 @@ function isAdmin(req, res, next) {
 //rutas solo para admin
 app.get("/sendmail", isAdmin, controller.getsendmail);
 app.get("/sendmail/:materia", isAdmin, controller.getsendmailmateria);
-app.post("/sendmail", controller.postenviocorreos);
+app.post("/sendmail", isAdmin, controller.postenviocorreos);

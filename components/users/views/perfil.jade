@@ -1,28 +1,32 @@
 extends ../../../views/layout
 
 block content
-  div.container 
+  header
+    br 
+    div.col-md-8.col-md-offset-2
+      a(href="/homepage").btn.btn-success.pull-left Regresar 
+        sapn.glyphicon.glyphicon-arrow-left
+  br
+  div(id="perfil").container 
     div.row
       div.col-md-6.col-md-offset-3
-        h1.text-center Mi informacion 
-        div.well
-          h3.text-center= result.fullName
-          hr
+        h1.text-center= title 
+        h2.text-center= result.fullName
+        div(id="datos")
           label Email
-          div= result.email
+          p= result.email
           label Matricula
-          div= result.matricula
+          p= result.matricula
           label Materia
-          div= result.materia
+          p= result.materia
           label Equipo 
-          div= result.equipo
-          label Creado
-          div= result.created
-          hr
+          p= result.equipo
           if (isAdmin)
-            div.well
-              a(href='/editUserAdmin/'+ result._id).btn.btn-warning Editar
-              a(data-toggle="modal" data-target="#myModal1").btn.btn-danger.pull-right Eliminar
+            div(id="botones")
+              a(href='/editUserAdmin/'+ result._id).btn.btn-primary Editar 
+                span.glyphicon.glyphicon-edit
+              a(data-toggle="modal" data-target="#myModal1").btn.btn-danger.pull-right Eliminar 
+                sapn.glyphicon.glyphicon-remove
               form(method="post", action="/deleteUser/" + result._id)
                 div(class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
                   div(class="modal-dialog")
@@ -39,5 +43,6 @@ block content
                         button(data-dismiss="modal").btn.btn-default Cancelar
                           button(type="submit").btn.btn-danger Eliminar
           else if (isLogged)
-            div.well
-              a(href='/editUser/'+ result._id).btn.btn-warning Editar
+            div(id="boton")
+              a(href='/editUser/'+ result._id).btn.btn-primary.btn-lg.btn-block Editar   
+                span.glyphicon.glyphicon-edit

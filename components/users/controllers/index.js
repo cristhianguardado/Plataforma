@@ -14,8 +14,12 @@ exports.getUser = function(req, res) {
 			res.send(406, err);
 		}
 		if(result){
-			console.log(result)
-			res.render('user',{result: result, title: result.fullName});
+			var render = {
+				result: result, 
+				name: result.fullName,
+				title: "Mi perfil"
+			}
+			res.render('perfil', render);
 		}
 	});
 };
@@ -114,8 +118,12 @@ exports.getEditForm = function(req, res){
 			res.send(406, err);
 		}
 		if(result){
-			console.log(result)
-			res.render('editUser',{title: "Editar informacion", result: result});
+			console.log(result);
+			var render = {
+				title: "Editar informacion", 
+				result: result
+			}
+			res.render('editUser', render);
 		}
 	});
 };
@@ -145,7 +153,7 @@ exports.postEditUser = function(req, res) {
 					//res.redirect('/editUser/' + id);
 				}
 				if(result) {
-					res.redirect('/user/' + result._id);			
+					res.redirect('/perfil/' + result._id);			
 				}
 			});
 		}else{

@@ -9,7 +9,7 @@ a {
   color: #00B7FF;
 }
 
-/*Login*/
+/*Users*/
 #login {
 	padding-top: 4em;
 }
@@ -26,6 +26,34 @@ a {
 	padding-left: 5em;
 	padding-right: 6em;
 	font-size: 20px;
+}
+#perfil {
+	padding-top: 4em;
+}
+#datos {
+	padding-top: 2em;
+	padding-bottom: 1em;
+	font-size: 18px;
+}
+#botones {
+	padding-top: 2em;
+	padding-bottom: 1em;
+}
+#boton {
+	padding-top: 2em;
+	padding-bottom: 1em;
+}
+#edit {
+	padding-top: 4em;
+}
+#editform {
+	padding-top: 2em;
+	padding-bottom: 1em;
+	font-size: 18px;
+}
+#btnedit {
+	padding-top: 2em;
+	padding-bottom: 1em;
 }
 
 /*Preregistro*/
@@ -136,11 +164,6 @@ a {
 
 /*404*/
 #error404{
-	background-image:url("../images/.jpg");
+	background-image:url("../images/404.png");
 	background-repeat: no-repeat;
-	height: 20em;
-	padding-top: 2em;
-	padding-right: 2em;
-	padding-bottom: 2em;
-	padding-left: 2em;
 }

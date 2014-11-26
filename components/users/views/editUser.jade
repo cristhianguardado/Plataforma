@@ -1,32 +1,39 @@
 extends ../../../views/layout
 
 block content
-  div.container 
+  header
+    br 
+    div.col-md-8.col-md-offset-2
+      a(href="/homepage").btn.btn-success.pull-left Regresar 
+        sapn.glyphicon.glyphicon-arrow-left
+  br
+  div(id="edit").container 
     div.row
       div.col-md-6.col-md-offset-3
-        h1= title
-        h2= fullName
-        hr
+        h1.text-center= title
+        h2.text-center= result.fullName
         - if (messages.error)
           div.alert.alert-danger.alert-dismissable
             button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
             span= messages.error
-        form(method="post" action="/editUser/" + result._id).well
-          input(type="hidden" name="materia" id="materia" value=result.materia)
-          div.form-group
-            label(for="fullName") Nombre completo :
-            input(name="fullName", id="fullName", value=result.fullName).form-control
-          div.form-group
-            label(for="matricula") Matricula
-            input(type="text", name="matricula", id="matricula", maxlength="7",value=result.matricula).form-control
-          div.form-group
-            label(for="email") Email
-            input(type="text", name="email", id="email", value=result.email).form-control
-          div.form-group
-            label(for="password") Password:
-            input(type="password", name="password", id="password").form-control
-          div.form-group
-            label(for="passwordconfi") Confirmar password
-            input(type="password", name="passwordconfi", id="passwordconfi").form-control
-          div.form-group
-            button(type="submit").btn.btn-success Enviar
+        div(id="editform")
+          form(method="post" action="/editUser/" + result._id)
+            input(type="hidden" name="materia" id="materia" value=result.materia)
+            div.form-group
+              label(for="fullName") Nombre completo :
+              input(name="fullName", id="fullName", value=result.fullName).form-control
+            div.form-group
+              label(for="matricula") Matricula
+              input(type="text", name="matricula", id="matricula", maxlength="7",value=result.matricula).form-control
+            div.form-group
+              label(for="email") Email
+              input(type="text", name="email", id="email", value=result.email).form-control
+            div.form-group
+              label(for="password") Password:
+              input(type="password", name="password", id="password").form-control
+            div.form-group
+              label(for="passwordconfi") Confirmar password
+              input(type="password", name="passwordconfi", id="passwordconfi").form-control
+            div(id="btnedit").form-group
+              button(type="submit").btn.btn-success.btn-lg.btn-block Editar   
+                span.glyphicon.glyphicon-edit
