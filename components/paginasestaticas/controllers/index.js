@@ -1,17 +1,38 @@
 var include = require("includemvc");
 var app = include.app();
-var Avisos = require("../../avisos/models");
 var Users = require("../../users/models");
+var Avisos = require("../../avisos/models");
+var Activities = require("../../activities/models");
 
-exports.homepage = function (req, res){
-	Avisos.find({materia: general}, function(err, avisos){
+exports.home = function (req, res){
+	var id = req.params.id;
+	Users.find({_id: id }, function(err, user){
 		if(err){
-			console.log(err);
+			res.send(err, 400);
 		}
-		if(avisos)
-			res.send(avisos, 400);
-			res.render("homepage", {title: "Home Page"});
-	})
+		if(user){
+			Avisos.find({materia: user.materia}, function(error, avisos){
+				if(error);
+				res.send(error, 400);
+				if(avisos){
+					Activities.find({materia: user.materia}, function(erro, activities){
+						if(erro){
+							res.send(erro, 400),
+						}
+						if(activities){
+							var render = {
+								title: "Home",
+								user: user,
+								avisos: avisos,
+								activities: activities,
+							}
+							res.render("home", render);
+						}
+					})
+				}
+			})
+		}
+	})	
 }
 
 exports.error403 = function(req, res){

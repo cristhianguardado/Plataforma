@@ -5,11 +5,7 @@ block content
     div.row
       div.col-md-12.col-md-offset-.5
         h1= title
-        - if (messages.error)
-          div.alert.alert-danger.alert-dismissable
-            button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
-            span= messages.error
-        div.well
+        div
           div.form-group
               label.text-center Nombre de la actividad:
               div=result.name

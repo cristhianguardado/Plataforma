@@ -1,6 +1,7 @@
 var app = require("../../../app");
 var Model = require("../models");
 var Materias = require("../../courses/models");
+var User = require("../../users/models");
 
 exports = module.exports;
 

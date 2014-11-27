@@ -37,6 +37,8 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.bodyParser());
+app.use(express.bodyParser({uploadDir:'./uploads'}));
 app.use(express.cookieParser('keyboard cat'));
 
 //app.use(express.session({ cookie: { maxAge: 60000 }}));
@@ -50,7 +52,7 @@ app.use(express.session({
       host       : "localhost",
       port       : "27017",
       username   : "root",
-      password   : "guardado",
+      password   : "guardado1008",
       database   : "plataforma",
       clear_interval: 6000,
 			maxAge: 60000

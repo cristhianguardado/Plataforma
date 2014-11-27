@@ -105,9 +105,11 @@ app.post("/editUserAdmin/:id", isAdmin, controller.postEditUserAdmin);
 app.get("/login", controller.getLogin);
 app.post("/login", 
   passport.authenticate('local', { 
-    successRedirect: '/homepage',
+    successRedirect: '/serchuser',
     failureRedirect: '/',
     failureFlash: true })
 );
 
 app.get("/logout", controller.getLogout);
+
+//app.get("/ratings/:id", isLogged, controller.ratings);

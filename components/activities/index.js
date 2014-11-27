@@ -45,7 +45,7 @@ function isAdmin(req, res, next) {
 }
 
 //obtener actividad (user)
-app.get('/activity/:id/:id', isLogged, controller.getactivity);
+app.get('/activity/:id', isLogged, controller.getactivity);
 
 //obtener actividades (admin)
 app.get('/activities', isAdmin, controller.getactivities);

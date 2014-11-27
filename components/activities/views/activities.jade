@@ -23,7 +23,8 @@ block content
                 td Acciones
               each result in results 
                 tr 
-                  td= result.name 
+                  td
+                    a(href="/activity/" + result._id)= result.name 
                   td!= result.explicacion
                   td= result.materia
                   td= result.deadline 

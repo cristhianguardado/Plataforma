@@ -5,9 +5,9 @@ var mongoose = require('mongoose');
 var User = require("../users/models");
 
 
-function isAdmin(req, res, next) {
+function isLogged(req, res, next) {
   if (req.session.passport.user){    
-    Model.findOne({_id: req.session.passport.user}, function(err, result){
+    User.findOne({_id: req.session.passport.user}, function(err, result){
       if(err){
         console.log(err);
       }
@@ -16,6 +16,13 @@ function isAdmin(req, res, next) {
         var isUser = result.isUser;
         if(isAdmin == true){
           app.locals.isAdmin = true;
+          app.locals.isUser = false;
+          app.locals.isLogged = true;
+          app.locals.session = req.session.passport.user;
+          next(); 
+        }
+        else if(isUser == true){
+          app.locals.isAdmin = false;
           app.locals.isUser = false;
           app.locals.isLogged = true;
           app.locals.session = req.session.passport.user;
@@ -33,23 +40,23 @@ function isAdmin(req, res, next) {
   }
 }
 
-function isLogged(req, res, next){
-  if(!req.session.passport.user){
-    res.redirect("/login");
-    next();
-  }else{
-    app.locals.isLogged = true;
-    app.locals.session = req.session.passport.user;
-    next();
-  }
-};
-
 
 app.get("/", function(req, res){
   res.redirect('/login');
 });
 
-app.get("/homepage", isLogged, controller.homepage)
+app.get("/serchuser", function(req, res){
+  User.findOne({_id: req.session.passport.user}, function(err, result){
+    if(err){
+      console.log(err);
+    }
+    if(result){
+      res.redirect('/home/' + result._id);
+    }
+  });
+});
+
+app.get("/home/:id", isLogged, controller.home)
 app.get("/403", controller.error403);
 app.get("/404", controller.error404);
 app.get("/error", controller.error);
