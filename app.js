@@ -5,6 +5,7 @@
 
 var express = require("express");
 var include = require("includemvc");
+var fs = require('fs');
 var config = include.path("config", "config.json");
 var app = module.exports = exports = express();
 var path = require("path");
