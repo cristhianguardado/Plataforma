@@ -3,8 +3,24 @@ var Model = require("../models");
 var Secure = require("../../../lib/secure");
 var secure = new Secure();
 var Courses = require("../../courses/models");
+var Avisos = require("../../avisos/models");
+var Activities = require("../../activities/models");
 
 exports = module.exports;
+
+exports.home = function (req, res){
+	var id = req.params.id;
+	console.log(id)
+	Model.find({_id: id }, function(err, result){
+		if(err){
+			res.send(err, 400);
+		}
+		if(result){
+			console.log(result)
+			res.render("homepage", {title: "Home", result: result});
+		}
+	})	
+}
 
 //Obtener usuario
 exports.getUser = function(req, res) {  
@@ -86,7 +102,7 @@ exports.getUsersformateria = function(req, res) {
 					var render = {
 						results: results, 
 						courses: courses, 
-						title: "Usuarios de la materia" + materia
+						title: "Usuarios de la materia " + materia
 					}
 					res.render('users', render);	
 				}

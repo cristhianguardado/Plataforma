@@ -85,6 +85,8 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+app.get("/home/:id", isLogged, controller.home);
+
 //obtener usuario
 app.get("/perfil/:id",isLogged, controller.getUser);//user and admin
 

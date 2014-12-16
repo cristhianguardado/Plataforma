@@ -1,15 +1,18 @@
 extends ../../../views/layout
 
 block content 
-  div(id="home").container-fluid
+  div(id="home").container
     div.row
       div.col-md-12.col-md-offset-.5
-        div(id="homeavisos")
-
+        //div(id="homeavisos").well
+          each aviso in avisos
+            p= aviso.aviso
+        h1.text-center= title
         div(id="homeuser").col-xs-6
-          h3 Datos del usuario
-          label Nombre:
-          p= result.fullName
+          h1 Datos del usuario
+          
+          label Email
+          p= result.email
           label Matricula
           p= result.matricula
           label Materia

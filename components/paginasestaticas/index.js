@@ -56,7 +56,7 @@ app.get("/serchuser", function(req, res){
   });
 });
 
-app.get("/home/:id", isLogged, controller.home)
+
 app.get("/403", controller.error403);
 app.get("/404", controller.error404);
 app.get("/error", controller.error);

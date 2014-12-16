@@ -72,6 +72,9 @@ a {
 #listapreregistro{
 	padding-top: 2em;
 }
+#btnregister{
+	margin-bottom: 1em;
+}
 
 /*Courses*/
 #newcourse {
@@ -170,4 +173,13 @@ a {
 #error404{
 	background-image:url("../images/404.png");
 	background-repeat: no-repeat;
+}
+#home{
+	padding-top: 5em;
+}
+#homeuser{
+	padding-top: 2em;
+}
+#homeact{
+	padding-top: 2em;
 }
