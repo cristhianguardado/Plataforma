@@ -1,16 +1,21 @@
 extends ../../../views/layout
 
-block content
-  br
-  header  
-    div.col-md-6.col-md-offset-3
-        
-      
-  div(id="login").container-fluid
+block content 
+  div(id="home").container-fluid
     div.row
       div.col-md-12.col-md-offset-.5
-        h1 Datos del usuario
-        div(id="datosuser").col-xs-6
+        div(id="homeavisos")
 
-        h1 Actividades
-        div(id="actividades").col-xs-6
+        div(id="homeuser").col-xs-6
+          h3 Datos del usuario
+          label Nombre:
+          p= result.fullName
+          label Matricula
+          p= result.matricula
+          label Materia
+          p= result.materia
+          label Equipo 
+          p= result.equipo
+
+        div(id="homeact").col-xs-6
+          h1 Actividades

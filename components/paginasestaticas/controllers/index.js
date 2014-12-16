@@ -6,27 +6,34 @@ var Activities = require("../../activities/models");
 
 exports.home = function (req, res){
 	var id = req.params.id;
-	Users.find({_id: id }, function(err, user){
+	console.log(id)
+	Users.find({_id: id }, function(err, result){
 		if(err){
 			res.send(err, 400);
 		}
-		if(user){
-			Avisos.find({materia: user.materia}, function(error, avisos){
-				if(error);
-				res.send(error, 400);
+		if(result){
+			console.log(result)
+			console.log(result.materia);
+			Avisos.find({materia: result.materia}, function(error, avisos){
+				if(error){
+					res.send(error, 400);
+				}
 				if(avisos){
-					Activities.find({materia: user.materia}, function(erro, activities){
+					console.log(avisos)
+					Activities.find({materia: result.materia}, function(erro, activities){
 						if(erro){
-							res.send(erro, 400),
+							res.send(erro, 400);
 						}
 						if(activities){
-							var render = {
+							console.log(activities)
+							/*var render = {
 								title: "Home",
-								user: user,
+								result: result,
 								avisos: avisos,
 								activities: activities,
 							}
-							res.render("home", render);
+							console.log(render)*/
+							res.render("home", {title: "Home", result: result});
 						}
 					})
 				}

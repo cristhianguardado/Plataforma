@@ -43,7 +43,7 @@ exports.newaviso = function(req, res){
 			console.log(err);
 		}
 		if(result){
-			res.render('nuevoaviso', {title: "Agreaga nuevo aviso", result: result});	
+			res.render('nuevoaviso', {title: "Agregar nuevo aviso", result: result});	
 		}
 	})
 }

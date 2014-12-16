@@ -39,7 +39,8 @@ block content
                 each result in results
                   if (result.isUser == true)
                     tr 
-                      td= result.fullName 
+                      td
+                        a(href="/home/" + result._id)= result.fullName 
                       td= result.email
                       td= result.matricula
                       td= result.materia 
