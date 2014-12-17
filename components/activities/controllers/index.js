@@ -2,6 +2,7 @@ var app = require("../../../app");
 var Model = require("../models");
 var Materias = require("../../courses/models");
 var User = require("../../users/models");
+var PostFile = require("../../../lib/postfile");
 
 exports = module.exports;
 
@@ -55,6 +56,7 @@ exports.newactivity = function(req, res){
 //Registro de actividad
 exports.postnewactivity = function(req, res) {
 	var body = req.body;
+	var image = PostFile.postPicture(req.files.image, req.body);
 	var activity = new Model({ 
 		name: body.name,
 		materia: body.materia,

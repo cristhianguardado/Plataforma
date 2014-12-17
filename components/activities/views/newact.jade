@@ -15,7 +15,7 @@ block content
             div.alert.alert-danger.alert-dismissable
               button(type="button", class="close", data-dismiss="alert", aria-hidden="true") &times;
               span= messages.error
-          form(method="post" action="/newactivity")
+          form(method="post" action="/newactivity" enctype="multipart/form-data")
             div(id="actmaterias").form-group.text-center
               label Materias
               br
@@ -33,6 +33,9 @@ block content
             div(id="form").form-group
               label(for="deadline") Fecha limite de la entrega:
               input(type="date", name="deadline", id="deadline").form-control
+            div.form-group
+              label(for="image") Documento:
+              input(type="file", name="file", id="file", enctype="multipart/form-data")
             div(id="form").form-group
               button(id="btnact" type="submit").pull-right.btn.btn-success Confirmar 
                 span.glyphicon.glyphicon-ok

@@ -29,6 +29,7 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', [path.join(__dirname, 'views')]);
 app.set('view engine', 'jade');
 app.locals.basedir = path.join(__dirname, 'views');
+app.locals.applicationName = config.applicationName;
 app.locals.isAdmin = false;
 app.locals.isLogged = false;
 app.locals.session = false;
@@ -38,28 +39,27 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.bodyParser());
-app.use(express.bodyParser({uploadDir:'./uploads'}));
+app.use(express.multipart({uploadDir:'./uploads'}));
+
 app.use(express.cookieParser('keyboard cat'));
 
 //app.use(express.session({ cookie: { maxAge: 60000 }}));
 
 
-app.use(express.session({  
-	store: new CaminteStore({
-		collection: "Sessions",
-		blog: {
-      driver     : "mongodb",
-      host       : "localhost",
-      port       : "27017",
-      username   : "root",
-      password   : "guardado1008",
-      database   : "plataforma",
-      clear_interval: 6000,
-			maxAge: 60000
-		}
-  }),
-		secret: config.secretKey,
-		cookie: { maxAge: 86400000 }
+app.use(express.session({
+    store: new CaminteStore({
+          driver: 'mongodb',
+          collection: 'Sessions',
+          db: {
+            host: "localhost",
+            port: "27017",
+            database: "plataforma",
+          },
+          clear_interval: 60000,
+          maxAge: 60000
+    }),
+    secret: config.secretKey,
+    cookie: { maxAge: 86400000 }
 }));
 
 app.use(passport.initialize());

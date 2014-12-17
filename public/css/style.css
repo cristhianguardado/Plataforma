@@ -169,11 +169,7 @@ a {
 	margin-bottom: 1em;
 }
 
-/*404*/
-#error404{
-	background-image:url("../images/404.png");
-	background-repeat: no-repeat;
-}
+/*homepage*/
 #home{
 	padding-top: 5em;
 }
@@ -183,3 +179,4 @@ a {
 #homeact{
 	padding-top: 2em;
 }
+
