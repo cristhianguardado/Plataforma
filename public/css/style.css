@@ -8,6 +8,26 @@ body {
 a {
   color: #00B7FF;
 }
+/*espacios*/
+.space{
+	width: auto;
+	float: none;
+}
+.space-10{
+	height: 10px;
+}
+.space-20{
+	height: 20px;
+}
+.space-30{
+	height: 30px;
+}
+.space-40{
+	height: 40px;
+}
+.space-50{
+	height: 50px;
+}
 
 /*Users*/
 #login {

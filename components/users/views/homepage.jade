@@ -23,6 +23,60 @@ block content
           p= result.equipo
 
         div(id="homeact").col-xs-6
+          .space-10
           h2 Actividades
-          each activity in activities
-            a(href="/activity/" + activity._id)= activity.name 
+          .space-10
+          div.col-xs-4
+            label Actividades
+            .space-20
+            each activity in activities
+              a(href="/activity/" + activity._id)= activity.name
+              .space-20
+            .space-20
+            h2 Examanes
+            .space-10
+            label Examen medio curso
+            .space-20
+            label Examane ordinario
+            .space-20
+          div.col-xs-2
+            if (locals.isAdmin)
+              form(action="/postgrades/" + result._id , method="post") 
+                label Calificaciones
+                .space-20
+                input(type="number" name="calificacion1", id="calificacion1" value=result.calificacion1)
+                .space-10
+                input(type="number" name="calificacion2", id="calificacion2" value=result.calificacion2)
+                .space-10
+                input(type="number" name="calificacion3", id="calificacion3" value=result.calificacion3)
+                .space-10
+                input(type="number" name="calificacion4", id="calificacion4" value=result.calificacion4)
+                .space-10
+                input(type="number" name="calificacion5", id="calificacion5" value=result.calificacion5)
+                .space-50
+                .space-50
+                .space-20
+                input(type="number" name="calmediocurso", id="calmediocurso" value=result.calmediocurso)
+                .space-30
+                input(type="number" name="calfinal", id="calfinal" value=result.calfinal)
+                .space-20
+                button(type="submit").btn.btn-info Revisar 
+                  sapn.glyphicon.glyphicon-ok
+                .space-20
+            else
+              label Calificaciones
+              .space-20
+              p.text-center= result.calificacion1
+              .space-10
+              p.text-center= result.calificacion2
+              .space-10
+              p.text-center= result.calificacion3
+              .space-10
+              p.text-center= result.calificacion4
+              .space-10
+              p.text-center= result.calificacion5
+              .space-50
+              .space-50
+              p.text-center= result.calmediocurso
+              .space-30
+              p.text-center= result.calfinal

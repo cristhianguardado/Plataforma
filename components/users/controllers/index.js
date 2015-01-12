@@ -270,6 +270,29 @@ exports.postEditUserAdmin = function(req, res) {
 	}
 };
 
+//Editar calificaciones (admin)
+exports.postgrades = function(req, res) {
+	var id = req.params.id;
+	var body = req.body;
+	var user = { 
+		calificacion1: body.calificacion1,
+		calificacion2: body.calificacion2,
+		calificacion3: body.calificacion3,
+		calificacion4: body.calificacion4,
+		calificacion5: body.calificacion5,
+		calmediocurso: body.calmediocurso,
+		calfinal:body.calfinal
+	};
+	Model.findOneAndUpdate({_id: id}, user, function(err, result){
+		if(err) {
+			console.log(err);
+		}
+		if(result) {
+			res.redirect('/users');			
+		}
+	});
+};
+
 exports.getLogin = function(req, res) {
   res.render("login" , {title: "Log in"});
 }

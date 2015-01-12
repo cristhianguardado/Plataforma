@@ -87,6 +87,8 @@ passport.deserializeUser(function(id, done) {
 
 app.get("/user/:id", isLogged, controller.homepage);
 
+app.post("/postgrades/:id", isAdmin, controller.postgrades);
+
 //obtener usuario
 app.get("/perfil/:id",isLogged, controller.getUser);//user and admin
 
@@ -115,7 +117,7 @@ app.get("/userid", function(req, res){
       res.redirect('/users')
     }
     else{
-      res.redirect("/home/" + result._id);
+      res.redirect("/user/" + result._id);
     }
   }
  })
