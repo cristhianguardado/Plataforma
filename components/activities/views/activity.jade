@@ -1,23 +1,29 @@
 extends ../../../views/layout
 
 block content
-  div.container 
+  div(id="activity").container 
     div.row
-      div.col-md-12.col-md-offset-.5
-        h1= title
-        div
+      div.col-md-6.col-md-offset-3
+        br
+        h1.text-center= title
+        div(id="actdatos")
           div.form-group
-              label.text-center Nombre de la actividad:
-              div=result.name
-            div.form-group
-              label.text-center Materia:
-              div=result.materia
-            div.form-group
-              label Explicaion de la actividad:
-              div!=result.explicacion
-            div.form-group
-              label Fecha limite de la entrega:
-              div=result.deadline
+            label Nombre de la actividad:
+            div=result.name
+          div.form-group
+            label Materia:
+            div=result.materia
+          div.form-group
+            label Explicaion de la actividad:
+            div!=result.explicacion
+          div.form-group
+            label Fecha limite de la entrega:
+            div=result.deadline
+      div(id="actfile").col-md-12.col-md-offset-.5
+        div.form-group
+          label.text-center Archivo de ayuda: 
+            br
+            embed(src= result.image.imagePath, width='1000' height="500")
 
 block scripts
   script(type="text/javascript").

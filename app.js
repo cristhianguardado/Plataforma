@@ -37,15 +37,10 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(express.multipart({uploadDir:'./public/uploads'}));
 app.use(express.methodOverride());
 app.use(express.bodyParser());
-app.use(express.multipart({uploadDir:'./uploads'}));
-
 app.use(express.cookieParser('keyboard cat'));
-
-//app.use(express.session({ cookie: { maxAge: 60000 }}));
-
-
 app.use(express.session({
     store: new CaminteStore({
           driver: 'mongodb',

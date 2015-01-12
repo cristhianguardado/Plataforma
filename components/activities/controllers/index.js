@@ -2,7 +2,9 @@ var app = require("../../../app");
 var Model = require("../models");
 var Materias = require("../../courses/models");
 var User = require("../../users/models");
-var PostFile = require("../../../lib/postfile");
+var fs = require('fs');
+var PostPicture= require("../../../lib/postPicture");
+var postPicture = new PostPicture();
 
 exports = module.exports;
 
@@ -14,6 +16,7 @@ exports.getactivity = function(req, res) {
 			res.send(406, err);
 		}
 		if(result){
+			console.log(result)
 			res.render('activity', {result: result, title: result.name});
 		}
 	});
@@ -51,24 +54,24 @@ exports.newactivity = function(req, res){
 			res.render('newact', {title: "Registra una nueva actividad", result: result});	
 		}
 	});
-}
+};
 
 //Registro de actividad
 exports.postnewactivity = function(req, res) {
-	var body = req.body;
-	var image = PostFile.postPicture(req.files.image, req.body);
-	var activity = new Model({ 
-		name: body.name,
-		materia: body.materia,
-		explicacion: body.explicacion,
-		deadline: body.deadline	
+	var image = postPicture.postPicture(req.files.image);
+	var activity  = new Model({
+		name: req.body.name,
+		materia: req.body.materia,
+		explicacion: req.body.explicacion,
+		deadline: req.body.deadline,
+		image: image
 	});
 	activity.save(function (err, result) {
 		if(err) {
-			res.send(err);
+			res.send(406, err);
 		}
 		if(result) {
-			res.redirect('/activities');			
+			res.redirect('/activities');
 		}
 	});
 };

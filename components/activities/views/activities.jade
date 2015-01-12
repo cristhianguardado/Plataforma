@@ -33,10 +33,10 @@ block content
                       span.glyphicon.glyphicon-edit
                     br
                     br
-                    a(data-toggle="modal" data-target="#myModal1").btn.btn-danger Eliminar
-                      sapn.glyphicon.glyphicon-remove
+                    a(data-toggle="modal" data-target="#myModal"+ result._id).btn.btn-danger.pull-left Eliminar 
+                      span.glyphicon.glyphicon-remove
                     form(method="post", action="/deleteactivity/" + result._id)
-                      div(class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+                      div(class="modal fade" id="myModal"+result._id tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
                         div(class="modal-dialog")
                           div(class="modal-content")
                             div(class="modal-header")
