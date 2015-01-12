@@ -37,12 +37,13 @@ exports.postRecover = function(req, res){
 						var smtpTransport = nodemailer.createTransport('SMTP',{
 							service: 'Gmail',
 							auth: {
-							  user: "estrada.cristhian9@gmail.com",
-							  pass: "devilmycry"
-								}
+							  user: "plataformafime@gmail.com",
+							  pass: "plataforma"
+
+							}
 					  });
 					  var mailOptions = {
-					    from: "Plataforma<estrada.cristhian9@gmail.com>", // sender address
+					    from: "Plataforma<plataformafime@gmail.com>", // sender address
 							to: email.email, // list of receivers
 							subject: "Correo de recuperacion de contraseña", // Subject line
 							//text: "Hello world ✔" // plaintext body
