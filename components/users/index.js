@@ -85,7 +85,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-app.get("/home/:id", isLogged, controller.home);
+app.get("/user/:id", isLogged, controller.homepage);
 
 //obtener usuario
 app.get("/perfil/:id",isLogged, controller.getUser);//user and admin
@@ -104,14 +104,28 @@ app.post("/editUser/:id", isLogged, controller.postEditUser);
 app.get("/editUserAdmin/:id", isAdmin, controller.getEditFormAdmin);
 app.post("/editUserAdmin/:id", isAdmin, controller.postEditUserAdmin);
 
+app.get("/userid", function(req, res){
+ Model.findOne({_id: req.session.passport.user}, function(err, result){
+  if(err){
+    console.log(err);
+  }
+  if(result){
+    var isAdmin = result.isAdmin;
+    if(isAdmin == true){
+      res.redirect('/users')
+    }
+    else{
+      res.redirect("/home/" + result._id);
+    }
+  }
+ })
+})
 app.get("/login", controller.getLogin);
 app.post("/login", 
   passport.authenticate('local', { 
-    successRedirect: '/serchuser',
+    successRedirect: '/userid',
     failureRedirect: '/',
     failureFlash: true })
 );
 
 app.get("/logout", controller.getLogout);
-
-//app.get("/ratings/:id", isLogged, controller.ratings);

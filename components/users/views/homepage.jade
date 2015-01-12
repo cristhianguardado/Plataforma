@@ -3,14 +3,16 @@ extends ../../../views/layout
 block content 
   div(id="home").container
     div.row
-      div.col-md-12.col-md-offset-.5
-        //div(id="homeavisos").well
+      div.col-md-6.col-md-offset-3
+        div(id="homeavisos")
           each aviso in avisos
-            p= aviso.aviso
-        h1.text-center= title
+            div!= aviso.aviso
+      div.col-md-12.col-md-offset-.5
+        br
+        h1= name
         div(id="homeuser").col-xs-6
-          h1 Datos del usuario
-          
+          h2 Datos del usuario
+          br
           label Email
           p= result.email
           label Matricula
@@ -21,4 +23,6 @@ block content
           p= result.equipo
 
         div(id="homeact").col-xs-6
-          h1 Actividades
+          h2 Actividades
+          each activity in activities
+            a(href="/activity/" + activity._id)= activity.name 

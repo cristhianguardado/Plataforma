@@ -5,22 +5,44 @@ var secure = new Secure();
 var Courses = require("../../courses/models");
 var Avisos = require("../../avisos/models");
 var Activities = require("../../activities/models");
+var PostPicture= require("../../../lib/postPicture");
+var postPicture = new PostPicture();
 
 exports = module.exports;
 
-exports.home = function (req, res){
+exports.homepage = function (req, res){
 	var id = req.params.id;
-	console.log(id)
-	Model.find({_id: id }, function(err, result){
-		if(err){
-			res.send(err, 400);
+	Model.findOne({_id: id}, function(err, result) {
+		if(err) {
+			res.send(406, err);
 		}
 		if(result){
-			console.log(result)
-			res.render("homepage", {title: "Home", result: result});
+			var materia = result.materia
+			Avisos.find({materia: materia}, function(error, avisos){
+				if(error){
+					console.log(error);
+				}	
+				if(avisos){
+					Activities.find({materia:materia}, function(err, activities){
+						if(err){
+							console.log(err);
+						}
+						if(activities){
+							var render = {
+								result: result,
+								avisos: avisos, 
+								activities: activities,
+								name: result.fullName,
+								title: "Mi perfil"
+							}
+							res.render('homepage', render);
+						}
+					})
+				}
+			})
 		}
-	})	
-}
+	});
+};
 
 //Obtener usuario
 exports.getUser = function(req, res) {  
@@ -57,7 +79,6 @@ exports.getUsers = function(req, res) {
 			res.send(406, err)
 		}
 		if(results) {
-			console.log(results);
 			Courses.find(function(err, courses){
 				if(err){
 					console.log(err);
@@ -134,7 +155,6 @@ exports.getEditForm = function(req, res){
 			res.send(406, err);
 		}
 		if(result){
-			console.log(result);
 			var render = {
 				title: "Editar informacion de: ", 
 				result: result
@@ -190,7 +210,6 @@ exports.getEditFormAdmin = function(req, res){
 			res.send(406, err);
 		}
 		if(result){
-			console.log(result)
 			Courses.find(function(err, courses){
 				if(err){
 					console.log(err);
@@ -231,7 +250,6 @@ exports.postEditUserAdmin = function(req, res) {
 				user: true,
 				admin: false
 			};
-			console.log(user)
 			Model.findOneAndUpdate({_id: id}, user, function(err, result){
 				if(err) {
 					console.log(err);

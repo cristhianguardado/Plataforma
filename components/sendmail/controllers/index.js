@@ -66,6 +66,8 @@ exports.getsendmailmateria = function(req, res) {
 exports.postenviocorreos = function(req, res){
 	var body = req.body.mail;
 	var titulo  = req.body.titulo;
+	var materia = req.params.materia;
+	console.log(materia)
 	User.find({materia: materia}, function(err, results){
 		if (err){
 			console.log(err);
@@ -75,7 +77,7 @@ exports.postenviocorreos = function(req, res){
 		}
 		if(results){
 			for(i=0; i <= results.length; i++ ){
-				//console.log(results[i].email);
+				console.log(results[i]);
 				var smtpTransport = nodemailer.createTransport('SMTP',{
 					service: 'Gmail',
 					auth: {

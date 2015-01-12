@@ -16,7 +16,6 @@ exports.getactivity = function(req, res) {
 			res.send(406, err);
 		}
 		if(result){
-			console.log(result)
 			res.render('activity', {result: result, title: result.name});
 		}
 	});
@@ -38,7 +37,6 @@ exports.getactivities = function(req, res) {
 			res.send(406, err)
 		}
 		if(results) {
-			console.log(results);
 			res.render('activities', {results: results, title: "Actividades"});
 		}
 	});

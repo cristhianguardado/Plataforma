@@ -171,13 +171,27 @@ a {
 
 /*homepage*/
 #home{
-	padding-top: 5em;
+	padding-top: 3em;
+	padding-left: 7em;
+}
+#home h1 {
+	padding-left: 7em;
 }
 #homeuser{
 	padding-top: 2em;
 }
 #homeact{
 	padding-top: 2em;
+}
+#homeavisos{
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 3em;
+	padding-right: 1em;
+	font-size: 18px;
+	font-weight: bold;
+  border-style: dashed;
+  border-width: 2px;
 }
 
 /*activity*/

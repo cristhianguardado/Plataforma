@@ -31,7 +31,6 @@ exports.getavisos = function(req, res) {
 			res.send(406, err)
 		}
 		if(results) {
-			console.log(results);
 			res.render('avisos', {results: results, title:"Avisos"});
 		}
 	});
