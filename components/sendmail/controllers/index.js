@@ -80,7 +80,7 @@ exports.postenviocorreos = function(req, res){
 					service: 'Gmail',
 					auth: {
 					  user: "plataformafime@gmail.com",
-					  pass: "plataforma"
+					  pass: "Plataforma"
 						}
 			  });
 			  var mailOptions = {

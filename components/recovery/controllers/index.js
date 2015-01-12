@@ -38,7 +38,7 @@ exports.postRecover = function(req, res){
 							service: 'Gmail',
 							auth: {
 							  user: "plataformafime@gmail.com",
-							  pass: "plataforma"
+							  pass: "Plataforma"
 
 							}
 					  });
