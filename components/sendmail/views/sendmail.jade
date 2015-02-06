@@ -42,12 +42,12 @@ block content
                     td= result.fullName 
                     td= result.matricula
                     td= result.email
-                    td= result.materia 
+                    td= result.materia
           div(id="formcorreo").col-md-6    
-            form(method="post" action="/sendmail")
+            form(method="post" action="/sendmail/" + materia)
               div.form-group
                 h3.text-center Titulo del correo 
-                input(type="text" name="titulo" id="titulo").form-control
+                input(type="text" name="titulo" id="titulo" required).form-control
               div.form-group
                 h3.text-center Contenido de correo
                 textarea(name="mail", id="mail").form-control
