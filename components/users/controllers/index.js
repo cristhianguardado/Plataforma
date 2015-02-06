@@ -294,7 +294,12 @@ exports.postgrades = function(req, res) {
 };
 
 exports.getLogin = function(req, res) {
-  res.render("login" , {title: "Log in"});
+	if(!req.session.passport.user){
+  	res.render("login" , {title: "Log in"});
+	}
+	else{
+		res.redirect("/user/" + req.session.passport.user);
+	}
 }
 
 // exports.postLogin = function(req, res) {
