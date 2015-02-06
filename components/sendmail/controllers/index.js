@@ -43,9 +43,6 @@ exports.getsendmailmateria = function(req, res) {
 			console.log(err);
 			res.send(406, err)
 		}
-		if(!results){
-			res.redirect('/sendmail');
-		}
 		if(results) {
 			Courses.find(function(err, courses){
 				if(err){
@@ -70,7 +67,6 @@ exports.postenviocorreos = function(req, res){
 	var body = req.body.mail;
 	var titulo  = req.body.titulo;
 	var materia = req.params.materia;
-	console.log(materia);
 	User.find({materia: materia}, function(err, results){
 		if (err){
 			console.log(err);
@@ -80,8 +76,7 @@ exports.postenviocorreos = function(req, res){
 		}
 		if(results){
 			for(i=0; i <= results.length; i++ ){
-				console.log(i);
-				console.log("si pero no que pedo pasa aqui " + results[i].email);
+				console.log(results[i]);
 				var smtpTransport = nodemailer.createTransport('SMTP',{
 					service: 'Gmail',
 					auth: {
